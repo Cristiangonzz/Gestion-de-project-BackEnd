@@ -11,27 +11,23 @@ export class TeamSchema extends TeamDomainEntity {
       index: true,
       required: true,
   })
-  nombre: string;
+  name: string;
 
   @Prop({
       type: [String],
       index: true,
-      unique: true,
-      required: true,
     })
     member: string[];
     
     @Prop({
         type: [String],
         index: true,
-        required: true,
     })
     task: string[];
 
     @Prop({
         type: String,
         index: true,
-        required: true,
     })
     proyect: string;
 }

@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './infrastructura/controllers/app.controller';
 import { MongoModule } from './infrastructura/dataBase/mongoose.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { join } from 'path';
@@ -13,6 +12,11 @@ import { MemberService } from './infrastructura/services/member.service';
 import { ProyectService } from './infrastructura/services/proyect.service';
 import { TaskService } from './infrastructura/services/task.service';
 import { TeamService } from './infrastructura/services/team.service';
+import { CollaborationController } from './infrastructura/controllers/collaboration.controller';
+import { MemberController } from './infrastructura/controllers/member.controller';
+import { ProyectController } from './infrastructura/controllers/proyect.controller';
+import { TaskController } from './infrastructura/controllers/task.controller';
+import { TeamController } from './infrastructura/controllers/team.controller';
 
 @Module({
   imports: [
@@ -27,9 +31,11 @@ import { TeamService } from './infrastructura/services/team.service';
        }),
   ],
   controllers: [
-    // PersonaController,
-    // EmpresaController,
-    // EventoCuentaController
+    MemberController,
+    TaskController,
+    ProyectController,
+    TeamController,
+    CollaborationController,
     ],
   providers: [
   

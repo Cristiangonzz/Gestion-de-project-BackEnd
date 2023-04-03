@@ -1,4 +1,4 @@
-import { IProjectDomainModel } from "../interfaces/proyecto.interface.domain";
+import { IProjectDomainModel } from "../interfaces/proyect.interface.domain";
 
 export class ProyectDomainEntity implements IProjectDomainModel{
     name: string;

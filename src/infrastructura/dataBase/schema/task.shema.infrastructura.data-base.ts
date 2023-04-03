@@ -16,14 +16,12 @@ export class TaskSchema extends TaskDomainEntity {
   @Prop({
       type: String,
       index: true,
-      required: true,
     })
     dataExpiration: string;
 
     @Prop({
         type: String,
         index: true,
-        required: true,
       })
       description: string;
     
@@ -36,7 +34,6 @@ export class TaskSchema extends TaskDomainEntity {
     @Prop({
         type: String,
         index: true,
-        required: true,
     })
     priority: string;
 

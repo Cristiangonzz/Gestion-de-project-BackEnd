@@ -13,14 +13,13 @@ export class TeamController {
         private readonly teamService: TeamService ) {}
 
     @ApiOperation ({summary: "Crear  Team"})
-    @Post('/crear')
+    @Post('/create')
      crearTeam(@Body() Team: RegisterTeamDto):Observable<TeamDomainEntity> {
         const caso = new CreateTeamUseCase(this.teamService);
         return caso.execute(Team).pipe(
         catchError((error : Error) => {
             throw new Error(`not register Team ${error}`);
           }));
-
     }
 }
 

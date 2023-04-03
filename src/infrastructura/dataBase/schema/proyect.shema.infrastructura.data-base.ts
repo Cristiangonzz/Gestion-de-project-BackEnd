@@ -16,22 +16,20 @@ export class ProyectSchema extends ProyectDomainEntity {
   @Prop({
       type: String,
       index: true,
-      unique: true,
-      required: true,
     })
     dataExpiration: string;
     
     @Prop({
         type: String,
         index: true,
-        required: true,
+       
     })
     progress: string;
 
     @Prop({
         type: String,
         index: true,
-        required: true,
+       
     })
     priority: string;
 

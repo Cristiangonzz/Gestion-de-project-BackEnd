@@ -16,22 +16,19 @@ export class CollaborationSchema extends CollaborationDomainEntity {
   @Prop({
       type: String,
       index: true,
-      unique: true,
-      required: true,
+     
     })
     notification: string;
     
     @Prop({
         type: String,
         index: true,
-        required: true,
     })
     progress: string;
 
     @Prop({
         type: String,
         index: true,
-        required: true,
     })
     performence: string;
 
@@ -39,7 +36,6 @@ export class CollaborationSchema extends CollaborationDomainEntity {
     @Prop({
         type: String,
         index: true,
-        required: true,
     })
     team: string;
 }
