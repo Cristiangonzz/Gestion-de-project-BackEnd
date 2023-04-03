@@ -3,23 +3,28 @@ import { Observable, catchError, map, of, tap } from 'rxjs';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { MemberService } from '../services/member.service';
 import { MemberDomainEntity } from 'src/domain/entities/member.entity.domain';
+import { RegisterMemberUseCase } from 'src/application/use-case/create/register-member.use-case';
+import { RegisterMemberDto } from '../dto/create/register-member.dto';
 
 @ApiTags('member')
 @Controller('member')
 export class MemberController {
     constructor(
         private readonly memberService: MemberService ) {}
+
     @ApiOperation ({summary: "Crear  Member"})
     @Post('/crear')
-     crearmember(@Body() member: RegistrarMemberDto):Observable<MemberDomainEntity> {
-        const caso = new RegistrarmemberoUseCase(this.memberService);
-        return caso.execute(member)
-        .pipe( (error:Error) => {
-                console.log(error);
-            });
-    }
+     crearmember(@Body() member: RegisterMemberDto):Observable<MemberDomainEntity> {
+        const caso = new RegisterMemberUseCase(this.memberService);
+        return caso.execute(member).pipe(
+        catchError((error : Error) => {
+            throw new Error(`not register member ${error}`);
+          }));
 
-    // @ApiOperation ({summary: "Buscar  member"})
+    }
+}
+
+ // @ApiOperation ({summary: "Buscar  member"})
     //  @Get('buscar')
     //  buscarmember(@Body() id: BuscarMail ):Observable<MemberDomainEntity>{
     //     const caso = new BuscarmemberUseCase(this.memberService);
@@ -72,5 +77,3 @@ export class MemberController {
     //     const caso = new LogearmemberoUseCase(this.memberService);
     //     return caso.execute(user);
     // }
-
-}

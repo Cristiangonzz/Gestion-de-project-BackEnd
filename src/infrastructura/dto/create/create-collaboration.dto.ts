@@ -2,7 +2,7 @@ import {  IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 import { CollaborationSchema } from "src/infrastructura/dataBase/schema/collaboration.shema.infrastructura.data-base";
 
-export class RegisterCollaborationDto extends CollaborationSchema{
+export class CreateCollaborationDto extends CollaborationSchema{
     @ApiProperty()
     @IsString()
     team: string;
