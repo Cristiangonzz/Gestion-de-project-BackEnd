@@ -6,6 +6,7 @@ import { MemberDomainEntity } from 'src/domain/entities/member.entity.domain';
 import { RegisterMemberUseCase } from 'src/application/use-case/create/register-member.use-case';
 import { RegisterMemberDto } from '../dto/create/register-member.dto';
 import { UpdateMemberUseCase } from 'src/application/use-case/update/update-member.use-case';
+import { GetMemberUseCase } from 'src/application/use-case/get/get-member.use-case';
 
 @ApiTags('member')
 @Controller('member')
@@ -34,31 +35,28 @@ export class MemberController {
              .pipe(
                 catchError((error) => {
                 console.error('Error in Update Member', error);
-                throw new Error('No se pudo editar la member');
+                throw new Error('Not Update Member');
               }));
     }
 
 
 
 
-    }
-
-    // @ApiOperation ({summary: "Buscar  member"})
-    //  @Get('buscar')
-    //  buscarmember(@Body() id: BuscarMail ):Observable<MemberDomainEntity>{
-    //     const caso = new BuscarmemberUseCase(this.memberService);
+    
+    @ApiOperation ({summary: "Get  Member"})
+     @Get('get/:id')
+     getMember(@Param('id') id: string ):Observable<MemberDomainEntity>{
+        const caso = new GetMemberUseCase(this.memberService);
         
-    //     return caso.execute(id.mail).pipe(tap((data: MemberDomainEntity) =>{
-    //         this.memberBuscadaPublisher.publish(data);
-    //     }),
-    //     catchError((error) => {
-    //         // Manejo de errores
-    //         console.error('Se produjo un error al buscar la member', error);
-    //         throw new Error('No se pudo buscar la member');
-    //       }));
-    //  }
+        return caso.execute(id).pipe(
+        catchError((error) => {
+            console.error('Se produjo un error al buscar la member', error);
+            throw new Error('No se pudo buscar la member');
+          }));
+     }
 
 
+  }
 
     // @ApiOperation ({summary: "Eliminar  member"})
     // @Delete('eliminar/:id')

@@ -5,6 +5,9 @@ import { TaskDomainEntity } from 'src/domain/entities/task.entity.domain';
 import { CreateTaskDto } from '../dto/create/create-task.dto';
 import { TaskService } from '../services/task.service';
 import { CreateTaskUseCase } from 'src/application/use-case/create/create-task-.use-case';
+import { UpdateTeamUseCase } from 'src/application/use-case/update/update-team-.use-case';
+import { UpdateTaskUseCase } from 'src/application/use-case/update/update-task-.use-case';
+import { GetTaskUseCase } from 'src/application/use-case/get/get-task-.use-case';
 
 @ApiTags('Task')
 @Controller('Task')
@@ -21,36 +24,35 @@ export class TaskController {
             throw new Error(`not register Task ${error}`);
         }));
     }
-}
 
- // @ApiOperation ({summary: "Buscar  Team"})
-    //  @Get('buscar')
-    //  buscarTeam(@Body() id: BuscarMail ):Observable<TeamDomainEntity>{
-    //     const caso = new BuscarTeamUseCase(this.TeamService);
+
+ 
+    @ApiOperation ({summary: "Update  Task"})
+    @Put('update/:id')
+    editarTeam(@Param('id') id : string,@Body() NewTask: CreateTaskDto ):Observable<TaskDomainEntity>{  
+            const caso = new UpdateTaskUseCase(this.taskService);
+            return caso.execute(id,NewTask)
+            .pipe( 
+            catchError((error) => {
+            console.error('Error in Update Task', error);
+            throw new Error('not Task Update');
+            }));
+    }
+    @ApiOperation ({summary: "get  Task"})
+     @Get('get/:id')
+     buscarTeam(@Param('id') id: string ):Observable<TaskDomainEntity>{
+        const caso = new GetTaskUseCase(this.taskService);
         
-    //     return caso.execute(id.mail).pipe(tap((data: TeamDomainEntity) =>{
-    //         this.TeamBuscadaPublisher.publish(data);
-    //     }),
-    //     catchError((error) => {
-    //         // Manejo de errores
-    //         console.error('Se produjo un error al buscar la Team', error);
-    //         throw new Error('No se pudo buscar la Team');
-    //       }));
-    //  }
+        return caso.execute(id)
+            .pipe(
+                catchError((error) => {
+    
+                console.error('Se produjo un error al buscar la Team', error);
+                throw new Error('No se pudo buscar la Team');
+            }));
+     }
 
-    // @ApiOperation ({summary: "Editar  Team"})
-    // @Put('editar/:id')
-    //    editarTeam(@Param('id') id : string,@Body() TeamEditada: RegistrarTeamDto ):Observable<TeamSchema>{  
-    //         const caso = new EditarTeamoUseCase(this.TeamService);
-    //         return caso.execute(id,TeamEditada).pipe(tap((data: TeamDomainEntity) =>{
-    //            this.TeamEditadaPublisher.publish(data);
-    //        }),
-    //        catchError((error) => {
-    //            // Manejo de errores
-    //            console.error('Se produjo un error al editar la Team', error);
-    //            throw new Error('No se pudo editar la Team');
-    //          }));
-    //    }
+    }
 
     // @ApiOperation ({summary: "Eliminar  Team"})
     // @Delete('eliminar/:id')

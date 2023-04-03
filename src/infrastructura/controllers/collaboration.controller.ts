@@ -5,6 +5,9 @@ import { CollaborationService } from '../services/collaboration.service';
 import { CreateCollaborationDto } from '../dto/create/create-collaboration.dto';
 import { CollaborationDomainEntity } from 'src/domain/entities/collaboration.entity.domain';
 import { CreateCollaborationUseCase } from 'src/application/use-case/create/create-collaboration-.use-case';
+import { UpdateCollaborationUseCase } from 'src/application/use-case/update/update-collaboration-.use-case';
+import { GetCollaborationUseCase } from 'src/application/use-case/get/get-collaboration-.use-case';
+import { GetEntityDtp } from '../dto/get/get.dto';
 
 @ApiTags('Collaboration')
 @Controller('Collaboration')
@@ -13,7 +16,7 @@ export class CollaborationController {
         private readonly collaborationService: CollaborationService ) {}
 
     @ApiOperation ({summary: "Crear  Collaboration"})
-    @Post('/crear')
+    @Post('/create')
      crearCollaboration(@Body() Collaboration: CreateCollaborationDto):Observable<CollaborationDomainEntity> {
         const caso = new CreateCollaborationUseCase(this.collaborationService);
         return caso.execute(Collaboration).pipe(
@@ -21,36 +24,35 @@ export class CollaborationController {
             throw new Error(`not register Collaboration ${error}`);
         }));
     }
-}
 
- // @ApiOperation ({summary: "Buscar  Team"})
-    //  @Get('buscar')
-    //  buscarTeam(@Body() id: BuscarMail ):Observable<TeamDomainEntity>{
-    //     const caso = new BuscarTeamUseCase(this.TeamService);
+
+        @ApiOperation ({summary: "update  collaboration"})
+    @Put('update/:id')
+       updateTeam(@Param('id') id : string,@Body() newCollaboration: CreateCollaborationDto ):Observable<CollaborationDomainEntity>{  
+            const caso = new UpdateCollaborationUseCase(this.collaborationService);
+            return caso.execute(id,newCollaboration)
+            .pipe(
+                catchError((error) => {
+                    console.error('Error in Update Collaboration', error);
+                    throw new Error('Not Update Collaboration');
+                }));
+       }
+
+
+  @ApiOperation ({summary: "Get Collaboration"})
+      @Get('get/:id')
+      getCollaboration(@Param('id') id: string ):Observable<CollaborationDomainEntity>{
+         const caso = new GetCollaborationUseCase(this.collaborationService);
         
-    //     return caso.execute(id.mail).pipe(tap((data: TeamDomainEntity) =>{
-    //         this.TeamBuscadaPublisher.publish(data);
-    //     }),
-    //     catchError((error) => {
-    //         // Manejo de errores
-    //         console.error('Se produjo un error al buscar la Team', error);
-    //         throw new Error('No se pudo buscar la Team');
-    //       }));
-    //  }
+         return caso.execute(id).pipe(
+         catchError((error) => {
+        
+             console.error('Se produjo un error al buscar la Team', error);
+             throw new Error('No se pudo buscar la Team');
+           }));
+      }
+    }
 
-    // @ApiOperation ({summary: "Editar  Team"})
-    // @Put('editar/:id')
-    //    editarTeam(@Param('id') id : string,@Body() TeamEditada: RegistrarTeamDto ):Observable<TeamSchema>{  
-    //         const caso = new EditarTeamoUseCase(this.TeamService);
-    //         return caso.execute(id,TeamEditada).pipe(tap((data: TeamDomainEntity) =>{
-    //            this.TeamEditadaPublisher.publish(data);
-    //        }),
-    //        catchError((error) => {
-    //            // Manejo de errores
-    //            console.error('Se produjo un error al editar la Team', error);
-    //            throw new Error('No se pudo editar la Team');
-    //          }));
-    //    }
 
     // @ApiOperation ({summary: "Eliminar  Team"})
     // @Delete('eliminar/:id')

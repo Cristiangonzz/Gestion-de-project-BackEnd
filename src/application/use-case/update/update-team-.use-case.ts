@@ -5,7 +5,7 @@ import { RegisterTeamDto } from 'src/infrastructura/dto/create/register-team.dto
 
 
 
-export class CreateTeamUseCase {  
+export class UpdateTeamUseCase {  
   
    
     constructor(private readonly teamService: ITeamDomainService<TeamDomainEntity>) { }
