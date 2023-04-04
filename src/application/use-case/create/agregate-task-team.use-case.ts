@@ -1,12 +1,12 @@
 import { Observable, map, switchMap } from 'rxjs';
-import { TeamDomainEntity } from 'src/domain/entities/team.entity.domain';
-import { ITeamDomainService } from 'src/domain/services/team.service.domain';
+import { TeamDomainEntity } from '../../../domain/entities/team.entity.domain';
+import { ITeamDomainService } from '../../../domain/services/team.service.domain';
 import { GetTeamUseCase } from '../get/get-team-.use-case';
 import { error } from 'console';
-import { ITaskDomainService } from 'src/domain/services/task.service.domain';
-import { TaskDomainEntity } from 'src/domain/entities/task.entity.domain';
+import { ITaskDomainService } from '../../../domain/services/task.service.domain';
+import { TaskDomainEntity } from '../../../domain/entities/task.entity.domain';
 import { GetTaskUseCase } from '../get/get-task-.use-case';
-import { AgregateTaskOfTeamDto } from 'src/infrastructura/dto/create/agregate-task-of-team.dto';
+import { AgregateTaskOfTeamDto } from '../../../infrastructura/dto/create/agregate-task-of-team.dto';
 
 
 

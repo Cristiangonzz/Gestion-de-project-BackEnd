@@ -1,7 +1,7 @@
 import { Observable, catchError, map } from 'rxjs';
-import { TeamDomainEntity } from 'src/domain/entities/team.entity.domain';
-import { ITeamDomainService } from 'src/domain/services/team.service.domain';
-import { RegisterTeamDto } from 'src/infrastructura/dto/create/register-team.dto';
+import { TeamDomainEntity } from '../../../domain/entities/team.entity.domain';
+import { ITeamDomainService } from '../../../domain/services/team.service.domain';
+import { RegisterTeamDto } from '../../../infrastructura/dto/create/register-team.dto';
 
 
 

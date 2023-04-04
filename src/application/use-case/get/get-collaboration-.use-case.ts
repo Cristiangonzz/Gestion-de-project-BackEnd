@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { CollaborationDomainEntity } from 'src/domain/entities/collaboration.entity.domain';
-import { ICollaborationDomainService } from 'src/domain/services/collaboration.service.domain';
+import { CollaborationDomainEntity } from '../../../domain/entities/collaboration.entity.domain';
+import { ICollaborationDomainService } from '../../../domain/services/collaboration.service.domain';
 
 
 

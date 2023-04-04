@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { ProyectDomainEntity } from 'src/domain/entities/proyect.entity.domain';
-import { IProyectDomainService } from 'src/domain/services/proyect.service.domain';
-import { CreateProyectDto } from 'src/infrastructura/dto/create/create-proyect.dto';
+import { ProyectDomainEntity } from '../../../domain/entities/proyect.entity.domain';
+import { IProyectDomainService } from '../../../domain/services/proyect.service.domain';
+import { CreateProyectDto } from '../../../infrastructura/dto/create/create-proyect.dto';
 
 export class CreateProyectUseCase {  
    

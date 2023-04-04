@@ -2,12 +2,12 @@ import { Body, Controller, Get, Param, Post, Put ,Delete} from '@nestjs/common';
 import { Observable, catchError } from 'rxjs';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ProyectService } from '../services/proyect.service';
-import { CreateProyectUseCase } from 'src/application/use-case/create/create-proyect-.use-case';
+import { CreateProyectUseCase } from '../../application/use-case/create/create-proyect-.use-case';
 import { CreateProyectDto } from '../dto/create/create-proyect.dto';
-import { ProyectDomainEntity } from 'src/domain/entities/proyect.entity.domain';
-import { UpdateProyectUseCase } from 'src/application/use-case/update/update-proyect-.use-case';
-import { GetProyectUseCase } from 'src/application/use-case/get/get-proyect-.use-case';
-import { DeleteProyectUseCase } from 'src/application/use-case/delete/delete-proyect-.use-case';
+import { ProyectDomainEntity } from '../../domain/entities/proyect.entity.domain';
+import { UpdateProyectUseCase } from '../../application/use-case/update/update-proyect-.use-case';
+import { GetProyectUseCase } from '../../application/use-case/get/get-proyect-.use-case';
+import { DeleteProyectUseCase } from '../../application/use-case/delete/delete-proyect-.use-case';
 
 @ApiTags('Proyect')
 @Controller('Proyect')

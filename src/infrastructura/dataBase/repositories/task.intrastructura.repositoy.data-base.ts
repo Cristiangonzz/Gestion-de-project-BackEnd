@@ -5,7 +5,7 @@ import { Observable, catchError, from, map } from "rxjs";
 
 import { Model, Types } from "mongoose";
 import { TaskSchema, taskDocument } from "../schema/task.shema.infrastructura.data-base";
-import { ITaskRepository } from "src/domain/repositories/task-repository-base.repositoy";
+import { ITaskRepository } from "../../../domain/repositories/task-repository-base.repositoy";
 
 @Injectable()
 export class TaskRepository implements ITaskRepository<TaskSchema>{

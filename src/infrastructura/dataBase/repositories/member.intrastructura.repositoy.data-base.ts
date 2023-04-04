@@ -4,7 +4,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Observable, catchError, from, map } from "rxjs";
 
 import { Model, Types } from "mongoose";
-import { IMemberRepository } from "src/domain/repositories/member-repository-base.repositoy";
+import { IMemberRepository } from "../../../domain/repositories/member-repository-base.repositoy";
 import { MemberSchema, memberDocument } from "../schema/member.shema.infrastructura.data-base";
 
 @Injectable()

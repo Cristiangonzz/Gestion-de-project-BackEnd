@@ -1,9 +1,9 @@
 import { Observable, catchError, map, switchMap, tap } from 'rxjs';
-import { MemberDomainEntity } from 'src/domain/entities/member.entity.domain';
-import { TeamDomainEntity } from 'src/domain/entities/team.entity.domain';
-import { IMemberDomainService } from 'src/domain/services/member.service.domain';
-import { ITeamDomainService } from 'src/domain/services/team.service.domain';
-import { AgregateMemberOfTeamDto } from 'src/infrastructura/dto/create/agregate-member-of-team.dto';
+import { MemberDomainEntity } from '../../../domain/entities/member.entity.domain';
+import { TeamDomainEntity } from '../../../domain/entities/team.entity.domain';
+import { IMemberDomainService } from '../../../domain/services/member.service.domain';
+import { ITeamDomainService } from '../../../domain/services/team.service.domain';
+import { AgregateMemberOfTeamDto } from '../../../infrastructura/dto/create/agregate-member-of-team.dto';
 import { GetTeamUseCase } from '../get/get-team-.use-case';
 import { GetMemberUseCase } from '../get/get-member.use-case';
 import { error } from 'console';

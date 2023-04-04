@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { MemberDomainEntity } from 'src/domain/entities/member.entity.domain';
-import { IMemberDomainService } from 'src/domain/services/member.service.domain';
+import { MemberDomainEntity } from '../../../domain/entities/member.entity.domain';
+import { IMemberDomainService } from '../../../domain/services/member.service.domain';
 
 
 

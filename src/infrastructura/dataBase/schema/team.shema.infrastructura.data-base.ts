@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { TeamDomainEntity } from 'src/domain/entities/team.entity.domain';
+import { TeamDomainEntity } from '../../../domain/entities/team.entity.domain';
 
 
 @Schema({collection: 'Team',versionKey: false})

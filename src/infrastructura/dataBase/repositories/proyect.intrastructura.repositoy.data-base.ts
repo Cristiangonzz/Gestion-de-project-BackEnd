@@ -4,7 +4,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Observable, catchError, from, map } from "rxjs";
 
 import { Model, Types } from "mongoose";
-import { IProyectRepository } from "src/domain/repositories/proyect-repository-base.repositoy";
+import { IProyectRepository } from "../../../domain/repositories/proyect-repository-base.repositoy";
 import { ProyectSchema, proyectDocument } from "../schema/proyect.shema.infrastructura.data-base";
 
 @Injectable()

@@ -1,11 +1,11 @@
 import { Observable, catchError, map, switchMap, tap } from 'rxjs';
-import { TeamDomainEntity } from 'src/domain/entities/team.entity.domain';
-import { ITeamDomainService } from 'src/domain/services/team.service.domain';
+import { TeamDomainEntity } from '../../../domain/entities/team.entity.domain';
+import { ITeamDomainService } from '../../../domain/services/team.service.domain';
 import { GetTeamUseCase } from '../get/get-team-.use-case';
 import { error } from 'console';
-import { ICollaborationDomainService } from 'src/domain/services/collaboration.service.domain';
-import { CollaborationDomainEntity } from 'src/domain/entities/collaboration.entity.domain';
-import { AgregateCollaborationOfTeamDto } from 'src/infrastructura/dto/create/agregate-collaboration-of-team.dto';
+import { ICollaborationDomainService } from '../../../domain/services/collaboration.service.domain';
+import { CollaborationDomainEntity } from '../../../domain/entities/collaboration.entity.domain';
+import { AgregateCollaborationOfTeamDto } from '../../../infrastructura/dto/create/agregate-collaboration-of-team.dto';
 import { GetCollaborationUseCase } from '../get/get-collaboration-.use-case';
 
 

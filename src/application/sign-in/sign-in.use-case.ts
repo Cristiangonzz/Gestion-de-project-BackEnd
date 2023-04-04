@@ -1,8 +1,8 @@
 import { Observable, from, of, switchMap } from 'rxjs';
 import * as jwt from 'jsonwebtoken';
-import { IMemberDomainService } from 'src/domain/services/member.service.domain';
-import { MemberDomainEntity } from 'src/domain/entities/member.entity.domain';
-import { SignInDto } from 'src/infrastructura/dto/sign-in/sign-in.dto';
+import { IMemberDomainService } from '../../domain/services/member.service.domain';
+import { MemberDomainEntity } from '../../domain/entities/member.entity.domain';
+import { SignInDto } from '../../infrastructura/dto/sign-in/sign-in.dto';
 
 
 export class SignInMemberUseCase {  

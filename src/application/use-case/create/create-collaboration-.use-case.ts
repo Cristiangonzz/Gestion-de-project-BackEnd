@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
-import { CollaborationDomainEntity } from 'src/domain/entities/collaboration.entity.domain';
-import { TeamDomainEntity } from 'src/domain/entities/team.entity.domain';
-import { ICollaborationDomainService } from 'src/domain/services/collaboration.service.domain';
-import { ITeamDomainService } from 'src/domain/services/team.service.domain';
-import { CreateCollaborationDto } from 'src/infrastructura/dto/create/create-collaboration.dto';
+import { CollaborationDomainEntity } from '../../../domain/entities/collaboration.entity.domain';
+import { TeamDomainEntity } from '../../../domain/entities/team.entity.domain';
+import { ICollaborationDomainService } from '../../../domain/services/collaboration.service.domain';
+import { ITeamDomainService } from '../../../domain/services/team.service.domain';
+import { CreateCollaborationDto } from '../../../infrastructura/dto/create/create-collaboration.dto';
 
 
 

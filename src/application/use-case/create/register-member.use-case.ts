@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { MemberDomainEntity } from 'src/domain/entities/member.entity.domain';
-import { IMemberDomainService } from 'src/domain/services/member.service.domain';
-import { RegisterMemberDto } from 'src/infrastructura/dto/create/register-member.dto';
+import { MemberDomainEntity } from '../../../domain/entities/member.entity.domain';
+import { IMemberDomainService } from '../../../domain/services/member.service.domain';
+import { RegisterMemberDto } from '../../../infrastructura/dto/create/register-member.dto';
 
 
 

@@ -4,7 +4,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Observable, catchError, from, map } from "rxjs";
 
 import { Model, Types } from "mongoose";
-import { ITeamRepository } from "src/domain/repositories/team-repository-base.repositoy";
+import { ITeamRepository } from "../../../domain/repositories/team-repository-base.repositoy";
 import { TeamSchema, teamDocument } from "../schema/team.shema.infrastructura.data-base";
 
 @Injectable()

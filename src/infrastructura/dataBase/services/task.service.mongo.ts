@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { TaskSchema } from '../schema/task.shema.infrastructura.data-base';
-import { ITaskDomainService } from 'src/domain/services/task.service.domain';
+import { ITaskDomainService } from '../../../domain/services/task.service.domain';
 import { TaskRepository } from '../repositories/task.intrastructura.repositoy.data-base';
 
 @Injectable()

@@ -3,11 +3,11 @@ import { Observable, catchError } from 'rxjs';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CollaborationService } from '../services/collaboration.service';
 import { CreateCollaborationDto } from '../dto/create/create-collaboration.dto';
-import { CollaborationDomainEntity } from 'src/domain/entities/collaboration.entity.domain';
-import { CreateCollaborationUseCase } from 'src/application/use-case/create/create-collaboration-.use-case';
-import { UpdateCollaborationUseCase } from 'src/application/use-case/update/update-collaboration-.use-case';
-import { GetCollaborationUseCase } from 'src/application/use-case/get/get-collaboration-.use-case';
-import { DeleteCollaborationUseCase } from 'src/application/use-case/delete/delete-collaboration.use-case';
+import { CollaborationDomainEntity } from '../../domain/entities/collaboration.entity.domain';
+import { CreateCollaborationUseCase } from '../../application/use-case/create/create-collaboration-.use-case';
+import { UpdateCollaborationUseCase } from '../../application/use-case/update/update-collaboration-.use-case';
+import { GetCollaborationUseCase } from '../../application/use-case/get/get-collaboration-.use-case';
+import { DeleteCollaborationUseCase } from '../../application/use-case/delete/delete-collaboration.use-case';
 
 @ApiTags('Collaboration')
 @Controller('Collaboration')

@@ -4,7 +4,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Observable, catchError, from, map } from "rxjs";
 
 import { Model, Types } from "mongoose";
-import { ICollaborationRepository } from "src/domain/repositories/collaboration-repository-base.repositoy";
+import { ICollaborationRepository } from "../../../domain/repositories/collaboration-repository-base.repositoy";
 import { CollaborationSchema, collaborationDocument } from "../schema/collaboration.shema.infrastructura.data-base";
 
 @Injectable()

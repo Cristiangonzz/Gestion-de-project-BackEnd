@@ -1,6 +1,6 @@
 import { IsEmail, IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
-import { MemberSchema } from "src/infrastructura/dataBase/schema/member.shema.infrastructura.data-base";
+import { MemberSchema } from "../../../infrastructura/dataBase/schema/member.shema.infrastructura.data-base";
 
 export class RegisterMemberDto extends MemberSchema{
     

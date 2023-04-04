@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { CollaborationSchema } from '../schema/collaboration.shema.infrastructura.data-base';
-import { ICollaborationDomainService } from 'src/domain/services/collaboration.service.domain';
+import { ICollaborationDomainService } from '../../../domain/services/collaboration.service.domain';
 import { CollaborationRepository } from '../repositories/collaboration.intrastructura.repositoy.data-base';
 
 @Injectable()

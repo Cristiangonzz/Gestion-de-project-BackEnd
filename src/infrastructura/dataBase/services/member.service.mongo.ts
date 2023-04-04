@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { MemberSchema } from '../schema/member.shema.infrastructura.data-base';
-import { IMemberDomainService } from 'src/domain/services/member.service.domain';
+import { IMemberDomainService } from '../../../domain/services/member.service.domain';
 import { MemberRepository } from '../repositories/member.intrastructura.repositoy.data-base';
 
 @Injectable()

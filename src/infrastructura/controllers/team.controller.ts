@@ -2,20 +2,20 @@ import { Body, Controller, Get, Param, Post, Put ,Delete} from '@nestjs/common';
 import { Observable, catchError } from 'rxjs';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { TeamService } from '../services/team.service';
-import { CreateTeamUseCase } from 'src/application/use-case/create/create-team-.use-case';
-import { TeamDomainEntity } from 'src/domain/entities/team.entity.domain';
+import { CreateTeamUseCase } from '../../application/use-case/create/create-team-.use-case';
+import { TeamDomainEntity } from '../../domain/entities/team.entity.domain';
 import { RegisterTeamDto } from '../dto/create/register-team.dto';
-import { UpdateTeamUseCase } from 'src/application/use-case/update/update-team-.use-case';
-import { GetTeamUseCase } from 'src/application/use-case/get/get-team-.use-case';
-import { DeleteTeamUseCase } from 'src/application/use-case/delete/delete-team-.use-case';
+import { UpdateTeamUseCase } from '../../application/use-case/update/update-team-.use-case';
+import { GetTeamUseCase } from '../../application/use-case/get/get-team-.use-case';
+import { DeleteTeamUseCase } from '../../application/use-case/delete/delete-team-.use-case';
 import { AgregateMemberOfTeamDto } from '../dto/create/agregate-member-of-team.dto';
-import { AgregateMemberOfTeamUseCase } from 'src/application/use-case/create/agregate-member-team.use-case';
+import { AgregateMemberOfTeamUseCase } from '../../application/use-case/create/agregate-member-team.use-case';
 import { MemberService } from '../services/member.service';
 import { TaskService } from '../services/task.service';
 import { AgregateTaskOfTeamDto } from '../dto/create/agregate-task-of-team.dto';
-import { AgregateTaskOfTeamUseCase } from 'src/application/use-case/create/agregate-task-team.use-case';
+import { AgregateTaskOfTeamUseCase } from '../../application/use-case/create/agregate-task-team.use-case';
 import { CollaborationService } from '../services/collaboration.service';
-import { AgregateCollaborationOfTeamUseCase } from 'src/application/use-case/create/agregate-collaboration-team.use-case';
+import { AgregateCollaborationOfTeamUseCase } from '../../application/use-case/create/agregate-collaboration-team.use-case';
 import { AgregateCollaborationOfTeamDto } from '../dto/create/agregate-collaboration-of-team.dto';
 
 @ApiTags('team')

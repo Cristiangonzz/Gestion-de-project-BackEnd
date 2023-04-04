@@ -1,11 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { TaskSchema } from '../schema/task.shema.infrastructura.data-base';
-import { ITaskDomainService } from 'src/domain/services/task.service.domain';
-import { TaskRepository } from '../repositories/task.intrastructura.repositoy.data-base';
 import { ProyectRepository } from '../repositories/proyect.intrastructura.repositoy.data-base';
 import { ProyectSchema } from '../schema/proyect.shema.infrastructura.data-base';
-import { IProyectDomainService } from 'src/domain/services/proyect.service.domain';
+import { IProyectDomainService } from '../../../domain/services/proyect.service.domain';
 
 @Injectable()
 export class ProyectMongoService
