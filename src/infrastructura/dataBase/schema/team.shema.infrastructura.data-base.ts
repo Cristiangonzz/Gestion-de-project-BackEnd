@@ -26,10 +26,18 @@ export class TeamSchema extends TeamDomainEntity {
     task: string[];
 
     @Prop({
+        type: [String],
+        index: true,
+    })
+    collaboration: string[];
+    
+    @Prop({
         type: String,
         index: true,
     })
     proyect: string;
+
+    
 }
 
 

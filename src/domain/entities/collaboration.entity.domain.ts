@@ -5,5 +5,5 @@ export class CollaborationDomainEntity implements ICollaborationDomainModel {
     notification: string;
     progress: string;
     performence: string;
-    team: string;
+ 
 }

@@ -17,6 +17,7 @@ export class UpdateTeamUseCase {
             newTeam.member = data.member;
             newTeam.proyect = data.proyect;
             newTeam.task = data.task;
+            newTeam.collaboration = data.collaboration;
             
             return this.teamService.update(id,newTeam);
     }

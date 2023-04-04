@@ -14,6 +14,9 @@ import { MemberService } from '../services/member.service';
 import { TaskService } from '../services/task.service';
 import { AgregateTaskOfTeamDto } from '../dto/create/agregate-task-of-team.dto';
 import { AgregateTaskOfTeamUseCase } from 'src/application/use-case/create/agregate-task-team.use-case';
+import { CollaborationService } from '../services/collaboration.service';
+import { AgregateCollaborationOfTeamUseCase } from 'src/application/use-case/create/agregate-collaboration-team.use-case';
+import { AgregateCollaborationOfTeamDto } from '../dto/create/agregate-collaboration-of-team.dto';
 
 @ApiTags('team')
 @Controller('team')
@@ -22,6 +25,7 @@ export class TeamController {
         private readonly teamService: TeamService,
         private readonly memberService: MemberService,
         private readonly taskService: TaskService,
+        private readonly collaborationService: CollaborationService,
          ) {}
 
 
@@ -100,12 +104,18 @@ export class TeamController {
                     throw new Error('not agregate task of Team ');
                 }));
             }
+
+        @ApiOperation ({summary: "agregate collaboration of  Team"})
+        @Put('agregate-collaboration')
+        agregateCollaborationOfTeam(@Body() newTeam: AgregateCollaborationOfTeamDto ):Observable<TeamDomainEntity>{  
+            const caso = new AgregateCollaborationOfTeamUseCase(this.teamService,this.collaborationService);
+            return caso.execute(newTeam)
+            .pipe(
+                catchError((error) => {
+                    console.error('Error in agregate collaboration of Team', error);
+                    throw new Error('not agregate collaboration of Team ');
+                }));
+            }
         }
     
-    // @ApiOperation ({summary: "Iniciar Sesion Team"})
-    // @Post(`signIn`) 
-    
-    // signIn(@Body() user: LogearseDto): Observable<string>{
-    //     const caso = new LogearTeamoUseCase(this.TeamService);
-    //     return caso.execute(user);
-    // }
+  

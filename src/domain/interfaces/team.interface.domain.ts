@@ -3,4 +3,5 @@ export interface ITeamDomainModel{
     member: string[];
     task: string[];
     proyect: string;
+    collaboration: string[];
 }

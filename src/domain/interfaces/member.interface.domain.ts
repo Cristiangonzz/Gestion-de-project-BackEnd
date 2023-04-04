@@ -3,4 +3,7 @@ export interface IMemberDomainModel{
     document: string;
     salary: number;
     role: string;
+
+    email:string;
+    password:string;
 }

@@ -8,6 +8,8 @@ import { RegisterMemberDto } from '../dto/create/register-member.dto';
 import { UpdateMemberUseCase } from 'src/application/use-case/update/update-member.use-case';
 import { GetMemberUseCase } from 'src/application/use-case/get/get-member.use-case';
 import { DeleteMemberUseCase } from 'src/application/use-case/delete/delete-member.use-case';
+import { SignInDto } from '../dto/sign-in/sign-in.dto';
+import { SignInMemberUseCase } from 'src/application/sign-in/sign-in.use-case';
 
 @ApiTags('member')
 @Controller('member')
@@ -70,6 +72,13 @@ export class MemberController {
                 throw new Error('Not delete Member');
               }));
         }
+
+      @ApiOperation ({summary: "sign in member"})
+      @Post(`signIn`) 
+      signIn(@Body() member: SignInDto): Observable<string>{
+          const caso = new SignInMemberUseCase(this.memberService);
+          return caso.execute(member);
+      }
   }
     
     // @ApiOperation ({summary: "Iniciar Sesion member"})

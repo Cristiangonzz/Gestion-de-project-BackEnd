@@ -11,7 +11,7 @@ export class CreateTeamUseCase {
     constructor(private readonly teamService: ITeamDomainService<TeamDomainEntity>) { }
 
         execute(data: RegisterTeamDto): Observable<TeamDomainEntity> {
-            
+
             this.teamService.findOneBy(data.proyect)
             .pipe(
                 map(() => true),
@@ -22,9 +22,10 @@ export class CreateTeamUseCase {
 
             const newTeam = new TeamDomainEntity();
             newTeam.name = data.name;
-            newTeam.member = [""];
+            newTeam.member = [];
             newTeam.proyect = data.proyect;
-            newTeam.task = [""];
+            newTeam.task = [];
+            newTeam.collaboration = [];
             
             return this.teamService.register(newTeam);
     }

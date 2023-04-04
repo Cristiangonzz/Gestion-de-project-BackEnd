@@ -9,4 +9,5 @@ export interface IMemberDomainService<T extends MemberDomainEntity = MemberDomai
     update(id :string ,persona: T): Observable<T>;
     delete(id: string): Observable<boolean>;
     findAll(): Observable<T[]>;
+    findOneByEmail(email: string): Observable<T>;
 }

@@ -18,6 +18,8 @@ export class RegisterMemberUseCase {
             newMember.document = data.document;
             newMember.role = data.role;
             newMember.salary = data.salary;
+            newMember.email = data.email;
+            newMember.password = data.password;
             return this.memberService.register(newMember);
     }
 }

@@ -17,8 +17,7 @@ export class UpdateCollaborationUseCase {
             newCollaboration.notification = data.notification;
             newCollaboration.performence = data.performence;
             newCollaboration.progress = data.progress;
-            newCollaboration.team = data.team;
-            
+        
             return this.collaborationService.update(id,newCollaboration);
     }
 }

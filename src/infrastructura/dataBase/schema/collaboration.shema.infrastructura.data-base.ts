@@ -32,12 +32,6 @@ export class CollaborationSchema extends CollaborationDomainEntity {
     })
     performence: string;
 
-    
-    @Prop({
-        type: String,
-        index: true,
-    })
-    team: string;
 }
 
 

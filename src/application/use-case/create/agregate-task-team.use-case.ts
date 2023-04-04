@@ -25,6 +25,7 @@ export class AgregateTaskOfTeamUseCase {
                 member: [""],
                 task: [""],
                 proyect: "",
+                collaboration: [""],
             }
 
             const caseTask = new GetTaskUseCase(this.taskService);
@@ -41,6 +42,7 @@ export class AgregateTaskOfTeamUseCase {
                   teamOld.name = value.name;
                   teamOld.proyect = value.proyect;
                   teamOld.task = value.task;
+                  teamOld.collaboration = value.collaboration;
                   teamOld.task.push(data.task);
                   return teamOld;
                 }),

@@ -33,6 +33,21 @@ export class MemberSchema extends MemberDomainEntity {
     })
     role: string;
 
+    @Prop({
+      type: String,
+      index: true,
+      required: true,
+      unique:true,
+    })
+    email: string;
+  
+  @Prop({
+      type: String,
+      index: true,
+      required:true,
+  })
+  password: string;
+
   
 
 }

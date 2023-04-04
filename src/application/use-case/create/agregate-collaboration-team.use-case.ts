@@ -1,49 +1,48 @@
 import { Observable, catchError, map, switchMap, tap } from 'rxjs';
-import { MemberDomainEntity } from 'src/domain/entities/member.entity.domain';
 import { TeamDomainEntity } from 'src/domain/entities/team.entity.domain';
-import { IMemberDomainService } from 'src/domain/services/member.service.domain';
 import { ITeamDomainService } from 'src/domain/services/team.service.domain';
-import { AgregateMemberOfTeamDto } from 'src/infrastructura/dto/create/agregate-member-of-team.dto';
 import { GetTeamUseCase } from '../get/get-team-.use-case';
-import { GetMemberUseCase } from '../get/get-member.use-case';
 import { error } from 'console';
+import { ICollaborationDomainService } from 'src/domain/services/collaboration.service.domain';
+import { CollaborationDomainEntity } from 'src/domain/entities/collaboration.entity.domain';
+import { AgregateCollaborationOfTeamDto } from 'src/infrastructura/dto/create/agregate-collaboration-of-team.dto';
+import { GetCollaborationUseCase } from '../get/get-collaboration-.use-case';
 
 
 
-export class AgregateMemberOfTeamUseCase {  
+export class AgregateCollaborationOfTeamUseCase {  
   
    
     constructor(
         private readonly teamService: ITeamDomainService<TeamDomainEntity>,
-        private readonly memberService: IMemberDomainService<MemberDomainEntity>,
+        private readonly collaborationService: ICollaborationDomainService<CollaborationDomainEntity>,
         ) { }
 
-        execute(data: AgregateMemberOfTeamDto): Observable<TeamDomainEntity> {
+        execute(data: AgregateCollaborationOfTeamDto): Observable<TeamDomainEntity> {
             console.log(data);
             let teamOld:TeamDomainEntity = {
                 name: "",
-                member: [""],
                 task: [""],
+                member: [""],
                 proyect: "",
-                collaboration: [""],
+                collaboration: [""]
             }
 
-            const caseMember = new GetMemberUseCase(this.memberService);
-            caseMember.execute(data.member);
+            const caseCollaboration = new GetCollaborationUseCase(this.collaborationService);
+            caseCollaboration.execute(data.collaboration);
 
             const caseTeam =  new GetTeamUseCase(this.teamService);
             caseTeam.execute(data.team)
             return caseTeam.execute(data.team).pipe(
                 map((value: TeamDomainEntity) => {
-                    value.member.forEach(element => {
-                        if(element == data.member) throw error("already registered member ");
+                    value.collaboration.forEach(element => {
+                        if(element == data.collaboration) throw error("already registered collaboration ");
                     });
-                  teamOld.member = value.member;
+                  teamOld.collaboration = value.collaboration;
                   teamOld.name = value.name;
                   teamOld.proyect = value.proyect;
                   teamOld.task = value.task;
-                  teamOld.collaboration = value.collaboration;
-                  teamOld.member.push(data.member);
+                  teamOld.collaboration.push(data.collaboration);
                   return teamOld;
                 }),
                 switchMap((team: TeamDomainEntity) => {

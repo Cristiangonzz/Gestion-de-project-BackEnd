@@ -3,5 +3,4 @@ export interface ICollaborationDomainModel {
     notification: string;
     progress: string;
     performence: string;
-    team: string;
 }

@@ -1,4 +1,4 @@
-import { IsString } from "class-validator";
+import { IsEmail, IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 import { MemberSchema } from "src/infrastructura/dataBase/schema/member.shema.infrastructura.data-base";
 
@@ -19,4 +19,12 @@ export class RegisterMemberDto extends MemberSchema{
     @ApiProperty()
     @IsString()
     role: string;
+
+    @ApiProperty()
+    @IsEmail()
+    email:string;
+    
+    @ApiProperty()
+    @IsString()
+    password:string;
 }

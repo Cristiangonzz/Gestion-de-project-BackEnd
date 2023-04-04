@@ -40,7 +40,15 @@ export class MemberRepository implements IMemberRepository<MemberSchema>{
                 }
             ));
     }
-
+    findOneByEmail(id: string): Observable<MemberSchema> {
+        const _id = new Types.ObjectId(id);
+        return from(Promise.resolve(this.memberModel.findOne({emai:id})))
+            .pipe(
+                catchError((err:Error) => {
+                    throw new Error(err.message);
+                }
+            ));
+    }
      /**
       * This function takes an id and a person object and returns an observable of the updated person
       * object.

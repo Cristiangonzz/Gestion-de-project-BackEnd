@@ -10,6 +10,10 @@ export class MemberMongoService
 {
  
   constructor(private readonly memberRepository: MemberRepository) {}
+
+  findOneByEmail(email: string): Observable<MemberSchema> {
+    return this.memberRepository.findOneBy(email);
+  }
   
   register(entity: MemberSchema): Observable<MemberSchema> {
     return this.memberRepository.register(entity);

@@ -5,4 +5,7 @@ export class MemberDomainEntity implements IMemberDomainModel {
     document: string;
     salary: number;
     role: string;
+
+    email:string;
+    password:string;
 }
