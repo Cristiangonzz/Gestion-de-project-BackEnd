@@ -45,31 +45,29 @@ export class CollaborationController {
          const caso = new GetCollaborationUseCase(this.collaborationService);
         
          return caso.execute(id).pipe(
-         catchError((error) => {
-        
-             console.error('Se produjo un error al buscar la Team', error);
-             throw new Error('No se pudo buscar la Team');
+         catchError((error: Error) => {
+             console.error('Error in Get Collaboration', error);
+             throw new Error('Not Get Collaboration');
            }));
       }
+      
+      
+    @ApiOperation ({summary: "Delete  Collaboration"})
+    @Delete('delete/:id')
+        deleteCollaboration(@Param('id') id: string ):Observable<boolean>{
+
+            const caso = new DeleteC(this.TeamService)
+            return caso.execute(id)
+                .pipe(
+                    tap((data: boolean) =>{
+                    this.TeamEliminadaPublisher.publish(data);
+            }),
+            catchError((error) => {
+                console.error('Se produjo un error al eliminar la Team', error);
+                throw new Error('No se pudo eliminar la Team');
+              }));
+        }
     }
-
-
-    // @ApiOperation ({summary: "Eliminar  Team"})
-    // @Delete('eliminar/:id')
-    //     eliminarTeam(@Param('id') id: string ):Observable<boolean>{
-
-    //         const caso = new EliminarTeamoUseCase(this.TeamService)
-    //         return caso.execute(id)
-    //             .pipe(
-    //                 tap((data: boolean) =>{
-    //                 this.TeamEliminadaPublisher.publish(data);
-    //         }),
-    //         catchError((error) => {
-    //             // Manejo de errores
-    //             console.error('Se produjo un error al eliminar la Team', error);
-    //             throw new Error('No se pudo eliminar la Team');
-    //           }));
-    //     }
     
     // @ApiOperation ({summary: "Iniciar Sesion Team"})
     // @Post(`signIn`) 
