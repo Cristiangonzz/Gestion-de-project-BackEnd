@@ -8,6 +8,7 @@ import { CreateCollaborationUseCase } from 'src/application/use-case/create/crea
 import { UpdateCollaborationUseCase } from 'src/application/use-case/update/update-collaboration-.use-case';
 import { GetCollaborationUseCase } from 'src/application/use-case/get/get-collaboration-.use-case';
 import { GetEntityDtp } from '../dto/get/get.dto';
+import { DeleteCollaborationUseCase } from 'src/application/use-case/delete/delete-collaboration.use-case';
 
 @ApiTags('Collaboration')
 @Controller('Collaboration')
@@ -56,23 +57,13 @@ export class CollaborationController {
     @Delete('delete/:id')
         deleteCollaboration(@Param('id') id: string ):Observable<boolean>{
 
-            const caso = new DeleteC(this.TeamService)
+            const caso = new DeleteCollaborationUseCase(this.collaborationService)
             return caso.execute(id)
                 .pipe(
-                    tap((data: boolean) =>{
-                    this.TeamEliminadaPublisher.publish(data);
-            }),
-            catchError((error) => {
-                console.error('Se produjo un error al eliminar la Team', error);
-                throw new Error('No se pudo eliminar la Team');
+                catchError((error) => {
+                console.error('Error in Delete Collaboration', error);
+                throw new Error('Not Delete Collaboration');
               }));
         }
     }
     
-    // @ApiOperation ({summary: "Iniciar Sesion Team"})
-    // @Post(`signIn`) 
-    
-    // signIn(@Body() user: LogearseDto): Observable<string>{
-    //     const caso = new LogearTeamoUseCase(this.TeamService);
-    //     return caso.execute(user);
-    // }

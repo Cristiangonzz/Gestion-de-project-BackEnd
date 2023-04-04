@@ -8,6 +8,7 @@ import { CreateTaskUseCase } from 'src/application/use-case/create/create-task-.
 import { UpdateTeamUseCase } from 'src/application/use-case/update/update-team-.use-case';
 import { UpdateTaskUseCase } from 'src/application/use-case/update/update-task-.use-case';
 import { GetTaskUseCase } from 'src/application/use-case/get/get-task-.use-case';
+import { DeleteTaskUseCase } from 'src/application/use-case/delete/delete-task-.use-case';
 
 @ApiTags('Task')
 @Controller('Task')
@@ -52,25 +53,21 @@ export class TaskController {
             }));
      }
 
-    }
+     
+     @ApiOperation ({summary: "Delete Task"})
+     @Delete('delete/:id')
+         deleteTask(@Param('id') id: string ):Observable<boolean>{
 
-    // @ApiOperation ({summary: "Eliminar  Team"})
-    // @Delete('eliminar/:id')
-    //     eliminarTeam(@Param('id') id: string ):Observable<boolean>{
-
-    //         const caso = new EliminarTeamoUseCase(this.TeamService)
-    //         return caso.execute(id)
-    //             .pipe(
-    //                 tap((data: boolean) =>{
-    //                 this.TeamEliminadaPublisher.publish(data);
-    //         }),
-    //         catchError((error) => {
-    //             // Manejo de errores
-    //             console.error('Se produjo un error al eliminar la Team', error);
-    //             throw new Error('No se pudo eliminar la Team');
-    //           }));
-    //     }
-    
+            const caso = new DeleteTaskUseCase(this.taskService)
+            return caso.execute(id)
+                .pipe(
+                    catchError((error) => {
+                    console.error('Se produjo un error al eliminar la Team', error);
+                    throw new Error('No se pudo eliminar la Team');
+                }));
+                }
+        }
+                    
     // @ApiOperation ({summary: "Iniciar Sesion Team"})
     // @Post(`signIn`) 
     

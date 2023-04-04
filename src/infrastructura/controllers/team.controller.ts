@@ -7,6 +7,7 @@ import { TeamDomainEntity } from 'src/domain/entities/team.entity.domain';
 import { RegisterTeamDto } from '../dto/create/register-team.dto';
 import { UpdateTeamUseCase } from 'src/application/use-case/update/update-team-.use-case';
 import { GetTeamUseCase } from 'src/application/use-case/get/get-team-.use-case';
+import { DeleteTeamUseCase } from 'src/application/use-case/delete/delete-team-.use-case';
 
 @ApiTags('team')
 @Controller('team')
@@ -46,30 +47,26 @@ export class TeamController {
             .pipe(
                 catchError((error) => {
     
-                console.error('Se produjo un error al buscar la Team', error);
-                throw new Error('No se pudo buscar la Team');
+                console.error('Error in Get Team', error);
+                throw new Error('not Team Get');
           }));
      }
     
-}
+     
+     @ApiOperation ({summary: "Delete  Team"})
+     @Delete('delete/:id')
+        deleteTeam(@Param('id') id: string ):Observable<boolean>{
 
-    // @ApiOperation ({summary: "Eliminar  Team"})
-    // @Delete('eliminar/:id')
-    //     eliminarTeam(@Param('id') id: string ):Observable<boolean>{
-
-    //         const caso = new EliminarTeamoUseCase(this.TeamService)
-    //         return caso.execute(id)
-    //             .pipe(
-    //                 tap((data: boolean) =>{
-    //                 this.TeamEliminadaPublisher.publish(data);
-    //         }),
-    //         catchError((error) => {
-    //             // Manejo de errores
-    //             console.error('Se produjo un error al eliminar la Team', error);
-    //             throw new Error('No se pudo eliminar la Team');
-    //           }));
-    //     }
-    
+            const caso = new DeleteTeamUseCase(this.teamService)
+            return caso.execute(id)
+                .pipe(
+                catchError((error) => {
+                console.error('Error in delete Team', error);
+                throw new Error('not Team delete');
+                }));
+            }
+            
+        }
     // @ApiOperation ({summary: "Iniciar Sesion Team"})
     // @Post(`signIn`) 
     

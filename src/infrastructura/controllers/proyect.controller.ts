@@ -8,6 +8,7 @@ import { ProyectDomainEntity } from 'src/domain/entities/proyect.entity.domain';
 import { UpdateProyectUseCase } from 'src/application/use-case/update/update-proyect-.use-case';
 import { GetTeamUseCase } from 'src/application/use-case/get/get-team-.use-case';
 import { GetProyectUseCase } from 'src/application/use-case/get/get-proyect-.use-case';
+import { DeleteProyectUseCase } from 'src/application/use-case/delete/delete-proyect-.use-case';
 
 @ApiTags('Proyect')
 @Controller('Proyect')
@@ -24,8 +25,6 @@ export class ProyectController {
             throw new Error(`not register Proyect ${error}`);
         }));
     }
-
-
 
     @ApiOperation ({summary: "update  Team"})
     @Put('update/:id')
@@ -48,30 +47,26 @@ export class ProyectController {
         return caso.execute(id)
             .pipe(
             catchError((error) => {
-            console.error('Se produjo un error al buscar la project', error);
-            throw new Error('No se pudo buscar la project');
+            console.error('error in Project Get', error);
+            throw new Error('Not Get Project');
           }));
      }
 
+     
+     @ApiOperation ({summary: "Delete Proyect"})
+    @Delete('delete/:id')
+        deleteProyect(@Param('id') id: string ):Observable<boolean>{
+
+            const caso = new DeleteProyectUseCase(this.proyectService)
+            return caso.execute(id)
+                .pipe(
+                catchError((error) => {
+                console.error('error in Project Delete', error);
+                throw new Error('Not delete Project');
+            }));
+        }
+        
     }
-
-    // @ApiOperation ({summary: "Eliminar  Team"})
-    // @Delete('eliminar/:id')
-    //     eliminarTeam(@Param('id') id: string ):Observable<boolean>{
-
-    //         const caso = new EliminarTeamoUseCase(this.TeamService)
-    //         return caso.execute(id)
-    //             .pipe(
-    //                 tap((data: boolean) =>{
-    //                 this.TeamEliminadaPublisher.publish(data);
-    //         }),
-    //         catchError((error) => {
-    //             // Manejo de errores
-    //             console.error('Se produjo un error al eliminar la Team', error);
-    //             throw new Error('No se pudo eliminar la Team');
-    //           }));
-    //     }
-    
     // @ApiOperation ({summary: "Iniciar Sesion Team"})
     // @Post(`signIn`) 
     

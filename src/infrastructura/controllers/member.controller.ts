@@ -7,6 +7,7 @@ import { RegisterMemberUseCase } from 'src/application/use-case/create/register-
 import { RegisterMemberDto } from '../dto/create/register-member.dto';
 import { UpdateMemberUseCase } from 'src/application/use-case/update/update-member.use-case';
 import { GetMemberUseCase } from 'src/application/use-case/get/get-member.use-case';
+import { DeleteMemberUseCase } from 'src/application/use-case/delete/delete-member.use-case';
 
 @ApiTags('member')
 @Controller('member')
@@ -50,30 +51,26 @@ export class MemberController {
         
         return caso.execute(id).pipe(
         catchError((error) => {
-            console.error('Se produjo un error al buscar la member', error);
-            throw new Error('No se pudo buscar la member');
+            console.error('Error in Get Member', error);
+            throw new Error('Not Get Member');
           }));
      }
 
 
+     
+    @ApiOperation ({summary: "Delete  member"})
+    @Delete('delete/:id')
+        delteMember(@Param('id') id: string ):Observable<boolean>{
+
+            const caso = new DeleteMemberUseCase(this.memberService)
+            return caso.execute(id)
+                .pipe(
+                catchError((error) => {
+                console.error('Error in delete Member', error);
+                throw new Error('Not delete Member');
+              }));
+        }
   }
-
-    // @ApiOperation ({summary: "Eliminar  member"})
-    // @Delete('eliminar/:id')
-    //     eliminarmember(@Param('id') id: string ):Observable<boolean>{
-
-    //         const caso = new EliminarmemberoUseCase(this.memberService)
-    //         return caso.execute(id)
-    //             .pipe(
-    //                 tap((data: boolean) =>{
-    //                 this.memberEliminadaPublisher.publish(data);
-    //         }),
-    //         catchError((error) => {
-    //             // Manejo de errores
-    //             console.error('Se produjo un error al eliminar la member', error);
-    //             throw new Error('No se pudo eliminar la member');
-    //           }));
-    //     }
     
     // @ApiOperation ({summary: "Iniciar Sesion member"})
     // @Post(`signIn`) 
