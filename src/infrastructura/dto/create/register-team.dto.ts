@@ -10,13 +10,5 @@ export class RegisterTeamDto extends TeamSchema{
 
     @ApiProperty()
     @IsString()
-    member: string[];
-
-    @ApiProperty()
-    @IsString()
-    task: string[];
-    
-    @ApiProperty()
-    @IsString()
     proyect: string;
 }

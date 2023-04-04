@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post, Put ,Delete} from '@nestjs/common';
-import { Observable, catchError, map, of, tap } from 'rxjs';
+import { Observable, catchError} from 'rxjs';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { MemberService } from '../services/member.service';
 import { MemberDomainEntity } from 'src/domain/entities/member.entity.domain';

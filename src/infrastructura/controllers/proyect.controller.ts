@@ -1,12 +1,11 @@
 import { Body, Controller, Get, Param, Post, Put ,Delete} from '@nestjs/common';
-import { Observable, catchError, map, of, tap } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ProyectService } from '../services/proyect.service';
 import { CreateProyectUseCase } from 'src/application/use-case/create/create-proyect-.use-case';
 import { CreateProyectDto } from '../dto/create/create-proyect.dto';
 import { ProyectDomainEntity } from 'src/domain/entities/proyect.entity.domain';
 import { UpdateProyectUseCase } from 'src/application/use-case/update/update-proyect-.use-case';
-import { GetTeamUseCase } from 'src/application/use-case/get/get-team-.use-case';
 import { GetProyectUseCase } from 'src/application/use-case/get/get-proyect-.use-case';
 import { DeleteProyectUseCase } from 'src/application/use-case/delete/delete-proyect-.use-case';
 

@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post, Put ,Delete} from '@nestjs/common';
-import { Observable, catchError, map, of, tap } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { TeamService } from '../services/team.service';
 import { CreateTeamUseCase } from 'src/application/use-case/create/create-team-.use-case';
@@ -8,16 +8,26 @@ import { RegisterTeamDto } from '../dto/create/register-team.dto';
 import { UpdateTeamUseCase } from 'src/application/use-case/update/update-team-.use-case';
 import { GetTeamUseCase } from 'src/application/use-case/get/get-team-.use-case';
 import { DeleteTeamUseCase } from 'src/application/use-case/delete/delete-team-.use-case';
+import { AgregateMemberOfTeamDto } from '../dto/create/agregate-member-of-team.dto';
+import { AgregateMemberOfTeamUseCase } from 'src/application/use-case/create/agregate-member-team.use-case';
+import { MemberService } from '../services/member.service';
+import { TaskService } from '../services/task.service';
+import { AgregateTaskOfTeamDto } from '../dto/create/agregate-task-of-team.dto';
+import { AgregateTaskOfTeamUseCase } from 'src/application/use-case/create/agregate-task-team.use-case';
 
 @ApiTags('team')
 @Controller('team')
 export class TeamController {
     constructor(
-        private readonly teamService: TeamService ) {}
+        private readonly teamService: TeamService,
+        private readonly memberService: MemberService,
+        private readonly taskService: TaskService,
+         ) {}
+
 
     @ApiOperation ({summary: "Crear  Team"})
     @Post('/create')
-     crearTeam(@Body() Team: RegisterTeamDto):Observable<TeamDomainEntity> {
+    crearTeam(@Body() Team: RegisterTeamDto):Observable<TeamDomainEntity> {
         const caso = new CreateTeamUseCase(this.teamService);
         return caso.execute(Team).pipe(
         catchError((error : Error) => {
@@ -28,19 +38,19 @@ export class TeamController {
     
     @ApiOperation ({summary: "Update  Team"})
     @Put('update/:id')
-    editarTeam(@Param('id') id : string,@Body() newTeam: RegisterTeamDto ):Observable<TeamDomainEntity>{  
-            const caso = new UpdateTeamUseCase(this.teamService);
-            return caso.execute(id,newTeam)
-            .pipe(
-                catchError((error) => {
-                    console.error('Error in Update Team', error);
-                    throw new Error('not Team Update');
-                    }));
+    updateTeam(@Param('id') id : string,@Body() newTeam: RegisterTeamDto ):Observable<TeamDomainEntity>{  
+        const caso = new UpdateTeamUseCase(this.teamService);
+        return caso.execute(id,newTeam)
+        .pipe(
+            catchError((error) => {
+                console.error('Error in Update Team', error);
+                throw new Error('not Team Update');
+                }));
     }
     
     @ApiOperation ({summary: "get  Team"})
-     @Get('get/:id')
-     buscarTeam(@Param('id') id: string ):Observable<TeamDomainEntity>{
+    @Get('get/:id')
+    buscarTeam(@Param('id') id: string ):Observable<TeamDomainEntity>{
         const caso = new GetTeamUseCase(this.teamService);
         
         return caso.execute(id)
@@ -53,20 +63,45 @@ export class TeamController {
      }
     
      
-     @ApiOperation ({summary: "Delete  Team"})
-     @Delete('delete/:id')
-        deleteTeam(@Param('id') id: string ):Observable<boolean>{
+    @ApiOperation ({summary: "Delete  Team"})
+    @Delete('delete/:id')
+    deleteTeam(@Param('id') id: string ):Observable<boolean>{
 
-            const caso = new DeleteTeamUseCase(this.teamService)
-            return caso.execute(id)
-                .pipe(
+        const caso = new DeleteTeamUseCase(this.teamService)
+        return caso.execute(id)
+            .pipe(
+            catchError((error) => {
+            console.error('Error in delete Team', error);
+            throw new Error('not Team delete');
+            }));
+        }
+            
+            
+    @ApiOperation ({summary: "agregate member of  Team"})
+    @Put('agregate-member')
+    agregateMemberOfTeam(@Body() newTeam: AgregateMemberOfTeamDto ):Observable<TeamDomainEntity>{  
+        const caso = new AgregateMemberOfTeamUseCase(this.teamService,this.memberService);
+        return caso.execute(newTeam)
+        .pipe(
+            catchError((error) => {
+                console.error('Error in agregate member of Team', error);
+                throw new Error('not agregate member of Team ');
+                }));
+        }
+        
+        @ApiOperation ({summary: "agregate task of  Team"})
+        @Put('agregate-task')
+        agregateTaskOfTeam(@Body() newTeam: AgregateTaskOfTeamDto ):Observable<TeamDomainEntity>{  
+            const caso = new AgregateTaskOfTeamUseCase(this.teamService,this.taskService);
+            return caso.execute(newTeam)
+            .pipe(
                 catchError((error) => {
-                console.error('Error in delete Team', error);
-                throw new Error('not Team delete');
+                    console.error('Error in agregate task of Team', error);
+                    throw new Error('not agregate task of Team ');
                 }));
             }
-            
         }
+    
     // @ApiOperation ({summary: "Iniciar Sesion Team"})
     // @Post(`signIn`) 
     

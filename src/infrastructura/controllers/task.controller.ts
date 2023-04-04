@@ -1,11 +1,10 @@
 import { Body, Controller, Get, Param, Post, Put ,Delete} from '@nestjs/common';
-import { Observable, catchError, map, of, tap } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { TaskDomainEntity } from 'src/domain/entities/task.entity.domain';
 import { CreateTaskDto } from '../dto/create/create-task.dto';
 import { TaskService } from '../services/task.service';
 import { CreateTaskUseCase } from 'src/application/use-case/create/create-task-.use-case';
-import { UpdateTeamUseCase } from 'src/application/use-case/update/update-team-.use-case';
 import { UpdateTaskUseCase } from 'src/application/use-case/update/update-task-.use-case';
 import { GetTaskUseCase } from 'src/application/use-case/get/get-task-.use-case';
 import { DeleteTaskUseCase } from 'src/application/use-case/delete/delete-task-.use-case';
