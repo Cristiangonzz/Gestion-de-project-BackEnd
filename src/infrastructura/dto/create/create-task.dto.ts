@@ -1,6 +1,6 @@
 import { IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
-import { TaskSchema } from "src/infrastructura/dataBase/schema/task.shema.infrastructura.data-base";
+import { TaskSchema } from "../../../infrastructura/dataBase/schema/task.shema.infrastructura.data-base";
 
 export class CreateTaskDto extends TaskSchema{
     

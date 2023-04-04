@@ -1,8 +1,9 @@
 import { Test, TestingModule } from "@nestjs/testing";
+import { of ,lastValueFrom} from "rxjs";
+
 import { MemberService } from "../services/member.service";
 import { MemberController } from "./member.controller";
 import { GetMemberUseCase } from "../../application/use-case/get/get-member.use-case";
-import { of ,lastValueFrom} from "rxjs";
 import { MemberDomainEntity } from "../../domain/entities/member.entity.domain";
 import { RegisterMemberUseCase } from "../../application/use-case/create/register-member.use-case";
 import { UpdateMemberUseCase } from "../../application/use-case/update/update-member.use-case";
@@ -113,8 +114,8 @@ describe('MemberController', () => {
       })
    
  
-    describe('Eliminar', () => {
-      it('debe retornar un true', async () => {
+    describe('delete', () => {
+      it('must return a true', async () => {
         // Arrange
       const member = true;  
      

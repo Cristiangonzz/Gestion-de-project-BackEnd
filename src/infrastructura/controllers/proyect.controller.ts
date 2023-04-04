@@ -5,71 +5,47 @@ import { ProyectService } from '../services/proyect.service';
 import { CreateProyectUseCase } from '../../application/use-case/create/create-proyect-.use-case';
 import { CreateProyectDto } from '../dto/create/create-proyect.dto';
 import { ProyectDomainEntity } from '../../domain/entities/proyect.entity.domain';
-import { UpdateProyectUseCase } from '../../application/use-case/update/update-proyect-.use-case';
-import { GetProyectUseCase } from '../../application/use-case/get/get-proyect-.use-case';
-import { DeleteProyectUseCase } from '../../application/use-case/delete/delete-proyect-.use-case';
+import { ProjectDelegate } from 'src/application/delegates/project.delegate';
 
 @ApiTags('Proyect')
 @Controller('Proyect')
 export class ProyectController {
-    constructor(
-        private readonly proyectService: ProyectService ) {}
+    private readonly useCase : ProjectDelegate;
 
-    @ApiOperation ({summary: "Crear  Proyect"})
-    @Post('/crear')
-     crearProyect(@Body() Proyect: CreateProyectDto):Observable<ProyectDomainEntity> {
-        const caso = new CreateProyectUseCase(this.proyectService);
-        return caso.execute(Proyect).pipe(
-        catchError((error : Error) => {
-            throw new Error(`not register Proyect ${error}`);
-        }));
+    constructor(
+        private readonly proyectService: ProyectService ) {
+
+            this.useCase = new ProjectDelegate(this.proyectService);
+        }
+
+    @ApiOperation ({summary: "create  Proyect"})
+    @Post('/create')
+     createProyect(@Body() Proyect: CreateProyectDto):Observable<ProyectDomainEntity> {
+        this.useCase.toCreateProject();
+        return this.useCase.execute(Proyect);
     }
 
     @ApiOperation ({summary: "update  Team"})
     @Put('update/:id')
-        editarTeam(@Param('id') id : string,@Body() newProyect: CreateProyectDto ):Observable<ProyectDomainEntity>{  
-             const caso = new UpdateProyectUseCase(this.proyectService);
-             return caso.execute(id,newProyect)
-                .pipe(
-            catchError((error) => {
-                // Manejo de errores
-                console.error('error in Project Update', error);
-                throw new Error('Not Update Project');
-            }));
+        updateTeam(@Param('id') id : string,@Body() newProyect: CreateProyectDto ):Observable<ProyectDomainEntity>{  
+            this.useCase.toUpdateProject();
+            return this.useCase.execute(id,newProyect);
         }
 
     @ApiOperation ({summary: "Get Proyect"})
     @Get('get/:id')
     getProject(@Param('id') id: string ):Observable<ProyectDomainEntity>{
-        const caso = new GetProyectUseCase(this.proyectService);
-        
-        return caso.execute(id)
-            .pipe(
-            catchError((error) => {
-            console.error('error in Project Get', error);
-            throw new Error('Not Get Project');
-          }));
+        this.useCase.toFindProjects();
+        return this.useCase.execute(id);
      }
 
      
      @ApiOperation ({summary: "Delete Proyect"})
     @Delete('delete/:id')
         deleteProyect(@Param('id') id: string ):Observable<boolean>{
-
-            const caso = new DeleteProyectUseCase(this.proyectService)
-            return caso.execute(id)
-                .pipe(
-                catchError((error) => {
-                console.error('error in Project Delete', error);
-                throw new Error('Not delete Project');
-            }));
+            this.useCase.toDeleteProject();
+            return this.useCase.execute(id);
         }
         
     }
-    // @ApiOperation ({summary: "Iniciar Sesion Team"})
-    // @Post(`signIn`) 
-    
-    // signIn(@Body() user: LogearseDto): Observable<string>{
-    //     const caso = new LogearTeamoUseCase(this.TeamService);
-    //     return caso.execute(user);
-    // }
+  

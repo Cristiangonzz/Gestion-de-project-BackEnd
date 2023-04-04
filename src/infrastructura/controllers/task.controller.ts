@@ -1,76 +1,48 @@
 import { Body, Controller, Get, Param, Post, Put ,Delete} from '@nestjs/common';
-import { Observable, catchError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { TaskDomainEntity } from '../../domain/entities/task.entity.domain';
 import { CreateTaskDto } from '../dto/create/create-task.dto';
 import { TaskService } from '../services/task.service';
-import { CreateTaskUseCase } from '../../application/use-case/create/create-task-.use-case';
-import { UpdateTaskUseCase } from '../../application/use-case/update/update-task-.use-case';
-import { GetTaskUseCase } from '../../application/use-case/get/get-task-.use-case';
-import { DeleteTaskUseCase } from '../../application/use-case/delete/delete-task-.use-case';
+import { TaskDelegate } from 'src/application/delegates/task.delegate';
 
-@ApiTags('Task')
-@Controller('Task')
+@ApiTags('task')
+@Controller('task')
 export class TaskController {
+    private readonly useCase: TaskDelegate;
     constructor(
-        private readonly taskService: TaskService ) {}
+        private readonly taskService: TaskService ) {
+            this.useCase = new TaskDelegate(this.taskService);
+        }
 
     @ApiOperation ({summary: "Crear  Task"})
-    @Post('/crear')
-     crearTask(@Body() task: CreateTaskDto):Observable<TaskDomainEntity> {
-        const caso = new CreateTaskUseCase(this.taskService);
-        return caso.execute(task).pipe(
-        catchError((error : Error) => {
-            throw new Error(`not register Task ${error}`);
-        }));
+    @Post('/create')
+     createTask(@Body() task: CreateTaskDto):Observable<TaskDomainEntity> {
+        this.useCase.toCreateTask();
+        return this.useCase.execute(task);
     }
 
 
  
     @ApiOperation ({summary: "Update  Task"})
     @Put('update/:id')
-    editarTeam(@Param('id') id : string,@Body() NewTask: CreateTaskDto ):Observable<TaskDomainEntity>{  
-            const caso = new UpdateTaskUseCase(this.taskService);
-            return caso.execute(id,NewTask)
-            .pipe( 
-            catchError((error) => {
-            console.error('Error in Update Task', error);
-            throw new Error('not Task Update');
-            }));
+    updateTask(@Param('id') id : string,@Body() NewTask: CreateTaskDto ):Observable<TaskDomainEntity>{  
+        this.useCase.toUpdateTask();
+        return this.useCase.execute(id,NewTask);
     }
     @ApiOperation ({summary: "get  Task"})
      @Get('get/:id')
-     buscarTeam(@Param('id') id: string ):Observable<TaskDomainEntity>{
-        const caso = new GetTaskUseCase(this.taskService);
-        
-        return caso.execute(id)
-            .pipe(
-                catchError((error) => {
-    
-                console.error('Se produjo un error al buscar la Team', error);
-                throw new Error('No se pudo buscar la Team');
-            }));
+     getTask(@Param('id') id: string ):Observable<TaskDomainEntity>{
+        this.useCase.toFindTasks();
+        return this.useCase.execute(id);
      }
 
      
      @ApiOperation ({summary: "Delete Task"})
      @Delete('delete/:id')
          deleteTask(@Param('id') id: string ):Observable<boolean>{
-
-            const caso = new DeleteTaskUseCase(this.taskService)
-            return caso.execute(id)
-                .pipe(
-                    catchError((error) => {
-                    console.error('Se produjo un error al eliminar la Team', error);
-                    throw new Error('No se pudo eliminar la Team');
-                }));
-                }
+            this.useCase.toDeleteTask();
+            return this.useCase.execute(id);
         }
+    }
                     
-    // @ApiOperation ({summary: "Iniciar Sesion Team"})
-    // @Post(`signIn`) 
-    
-    // signIn(@Body() user: LogearseDto): Observable<string>{
-    //     const caso = new LogearTeamoUseCase(this.TeamService);
-    //     return caso.execute(user);
-    // }

@@ -4,51 +4,39 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CollaborationService } from '../services/collaboration.service';
 import { CreateCollaborationDto } from '../dto/create/create-collaboration.dto';
 import { CollaborationDomainEntity } from '../../domain/entities/collaboration.entity.domain';
-import { CreateCollaborationUseCase } from '../../application/use-case/create/create-collaboration-.use-case';
-import { UpdateCollaborationUseCase } from '../../application/use-case/update/update-collaboration-.use-case';
-import { GetCollaborationUseCase } from '../../application/use-case/get/get-collaboration-.use-case';
-import { DeleteCollaborationUseCase } from '../../application/use-case/delete/delete-collaboration.use-case';
+import { CollaborationDelegate } from 'src/application/delegates/collaboration.delegate';
 
 @ApiTags('Collaboration')
 @Controller('Collaboration')
 export class CollaborationController {
-    constructor(
-        private readonly collaborationService: CollaborationService ) {}
 
-    @ApiOperation ({summary: "Crear  Collaboration"})
+    private readonly useCase: CollaborationDelegate; 
+    constructor(
+        private readonly collaborationService: CollaborationService ) {
+            this.useCase = new CollaborationDelegate(this.collaborationService);
+        }
+
+    @ApiOperation ({summary: "create  Collaboration"})
     @Post('/create')
-     crearCollaboration(@Body() Collaboration: CreateCollaborationDto):Observable<CollaborationDomainEntity> {
-        const caso = new CreateCollaborationUseCase(this.collaborationService);
-        return caso.execute(Collaboration).pipe(
-        catchError((error : Error) => {
-            throw new Error(`not register Collaboration ${error}`);
-        }));
+     createCollaboration(@Body() Collaboration: CreateCollaborationDto):Observable<CollaborationDomainEntity> {
+        this.useCase.toCreateCollaboration();
+        return this.useCase.execute(Collaboration);
     }
 
 
         @ApiOperation ({summary: "update  collaboration"})
     @Put('update/:id')
-       updateTeam(@Param('id') id : string,@Body() newCollaboration: CreateCollaborationDto ):Observable<CollaborationDomainEntity>{  
-            const caso = new UpdateCollaborationUseCase(this.collaborationService);
-            return caso.execute(id,newCollaboration)
-            .pipe(
-                catchError((error) => {
-                    console.error('Error in Update Collaboration', error);
-                    throw new Error('Not Update Collaboration');
-                }));
+       updateCollaboration(@Param('id') id : string,@Body() newCollaboration: CreateCollaborationDto ):Observable<CollaborationDomainEntity>{  
+            this.useCase.toUpdateCollaboration();
+            return this.useCase.execute(id,newCollaboration);
        }
 
 
   @ApiOperation ({summary: "Get Collaboration"})
       @Get('get/:id')
       getCollaboration(@Param('id') id: string ):Observable<CollaborationDomainEntity>{
-         const caso = new GetCollaborationUseCase(this.collaborationService);
-        
-         return caso.execute(id).pipe(
-         catchError((error: Error) => {
-             console.error('Error in Get Collaboration', error);
-             throw new Error('Not Get Collaboration');
-           }));
+        this.useCase.toFindCollaborations();
+        return this.useCase.execute(id);
       }
       
       
@@ -56,13 +44,8 @@ export class CollaborationController {
     @Delete('delete/:id')
         deleteCollaboration(@Param('id') id: string ):Observable<boolean>{
 
-            const caso = new DeleteCollaborationUseCase(this.collaborationService)
-            return caso.execute(id)
-                .pipe(
-                catchError((error) => {
-                console.error('Error in Delete Collaboration', error);
-                throw new Error('Not Delete Collaboration');
-              }));
+            this.useCase.toDeleteCollaboration();
+            return this.useCase.execute(id);
         }
     }
     

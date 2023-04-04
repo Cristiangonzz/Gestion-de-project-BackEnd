@@ -10,52 +10,45 @@ import { GetMemberUseCase } from '../../application/use-case/get/get-member.use-
 import { DeleteMemberUseCase } from '../../application/use-case/delete/delete-member.use-case';
 import { SignInDto } from '../dto/sign-in/sign-in.dto';
 import { SignInMemberUseCase } from '../../application/sign-in/sign-in.use-case';
+import { MemberDelegate } from 'src/application/delegates/member.delegate';
 
 @ApiTags('member')
 @Controller('member')
 export class MemberController {
-    constructor(
-        private readonly memberService: MemberService ) {}
+
+     private readonly useCase: MemberDelegate;
+
+    constructor(private readonly memberService: MemberService) {
+      this.useCase = new MemberDelegate(this.memberService);
+    }
+
+
+
+    // constructor(
+    //     private readonly memberService: MemberService ) {}
 
     @ApiOperation ({summary: "Create  Member"})
     @Post('/create')
      registerMember(@Body() member: RegisterMemberDto):Observable<MemberDomainEntity> {
-        const caso = new RegisterMemberUseCase(this.memberService);
-        return caso.execute(member).pipe(
-        catchError((error : Error) => {
-            throw new Error(`not register member ${error}`);
-          }));
-
+        this.useCase.toCreateMember();
+        return this.useCase.execute(member);
     }
 
 
  
      @ApiOperation ({summary: "Update  member"})
      @Put('update/:id')
-        updateMember(@Param('id') id : string,@Body() memberEditada: RegisterMemberDto ):Observable<MemberDomainEntity>{  
-             const caso = new UpdateMemberUseCase(this.memberService);
-             return caso.execute(id,memberEditada)
-             .pipe(
-                catchError((error) => {
-                console.error('Error in Update Member', error);
-                throw new Error('Not Update Member');
-              }));
+        updateMember(@Param('id') id : string,@Body() newMember: RegisterMemberDto ):Observable<MemberDomainEntity>{  
+            this.useCase.toUpdateMember();
+            return this.useCase.execute(id,newMember);
     }
-
-
-
 
     
     @ApiOperation ({summary: "Get  Member"})
      @Get('get/:id')
      getMember(@Param('id') id: string ):Observable<MemberDomainEntity>{
-        const caso = new GetMemberUseCase(this.memberService);
-        
-        return caso.execute(id).pipe(
-        catchError((error) => {
-            console.error('Error in Get Member', error);
-            throw new Error('Not Get Member');
-          }));
+        this.useCase.toFindMembers();
+            return this.useCase.execute(id);
      }
 
 
@@ -63,14 +56,8 @@ export class MemberController {
     @ApiOperation ({summary: "Delete  member"})
     @Delete('delete/:id')
         deleteMember(@Param('id') id: string ):Observable<boolean>{
-
-            const caso = new DeleteMemberUseCase(this.memberService)
-            return caso.execute(id)
-                .pipe(
-                catchError((error) => {
-                console.error('Error in delete Member', error);
-                throw new Error('Not delete Member');
-              }));
+            this.useCase.toDeleteMember();
+            return this.useCase.execute(id);
         }
 
       @ApiOperation ({summary: "sign in member"})
