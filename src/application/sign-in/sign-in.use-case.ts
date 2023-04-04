@@ -10,10 +10,10 @@ export class SignInMemberUseCase {
     constructor(private readonly memberService: IMemberDomainService<MemberDomainEntity>) { }
 
         execute(dato: SignInDto): Observable<string> {
-
+          console.log(dato);
             return from(this.memberService.findOneByEmail(dato.email)).pipe(
                 switchMap((member) => {
-                 
+                 console.log(member);
                    if(member.password !== dato.password) throw new Error("incorrect credentials");
                            
                     return of(jwt.sign({member},`tokenEntrada`));

@@ -41,8 +41,7 @@ export class MemberRepository implements IMemberRepository<MemberSchema>{
             ));
     }
     findOneByEmail(id: string): Observable<MemberSchema> {
-        const _id = new Types.ObjectId(id);
-        return from(Promise.resolve(this.memberModel.findOne({emai:id})))
+        return from(Promise.resolve(this.memberModel.findOne({email: id})))
             .pipe(
                 catchError((err:Error) => {
                     throw new Error(err.message);

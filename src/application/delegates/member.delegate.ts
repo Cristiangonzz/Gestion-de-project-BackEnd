@@ -6,6 +6,7 @@ import { IUseCase } from 'src/domain/interfaces/use-case.interface.domain';
 import { DeleteMemberUseCase } from '../use-case/delete/delete-member.use-case';
 import { GetMemberUseCase } from '../use-case/get/get-member.use-case';
 import { UpdateMemberUseCase } from '../use-case/update/update-member.use-case';
+import { SignInMemberUseCase } from '../sign-in/sign-in.use-case';
 
 export class MemberDelegate implements IUseCase {
   private delegate: IUseCase;
@@ -30,5 +31,9 @@ export class MemberDelegate implements IUseCase {
 
   toUpdateMember(): void {
     this.delegate = new UpdateMemberUseCase(this.memberService);
+  }
+
+  toSignInMember(): void {
+    this.delegate = new SignInMemberUseCase(this.memberService);
   }
 }
