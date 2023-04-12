@@ -10,8 +10,8 @@ export class MongooseConfigService implements MongooseOptionsFactory {
     
   createMongooseOptions(): MongooseModuleOptions {
     return {
-      uri: 'mongodb+srv://cristianuruuy:1234@cluster0.tmv8fk5.mongodb.net/test',//tenog que hacer una nueva base de datos 
-      //uri: this.configService.get('MONGO_URI'),
+      uri: "mongodb://mongo:QSoZNFJ15xwesJlbwEPJ@containers-us-west-4.railway.app:5637",
+      dbName: "gestion",
+      }
     };
   }
-}

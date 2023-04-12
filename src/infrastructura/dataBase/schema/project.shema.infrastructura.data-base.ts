@@ -3,7 +3,7 @@ import { HydratedDocument } from 'mongoose';
 import { ProjectDomainEntity } from '../../../domain/entities/project.entity.domain';
 
 
-@Schema({collection: 'project',versionKey: false})
+@Schema({collection: 'Project',versionKey: false})
 /* A class that represents a person. */
 export class ProjectSchema extends ProjectDomainEntity {
   @Prop({
