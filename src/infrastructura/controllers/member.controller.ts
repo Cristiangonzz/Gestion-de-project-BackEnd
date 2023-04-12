@@ -5,7 +5,7 @@ import { MemberService } from '../services/member.service';
 import { MemberDomainEntity } from '../../domain/entities/member.entity.domain';
 import { RegisterMemberDto } from '../dto/create/register-member.dto';
 import { SignInDto } from '../dto/sign-in/sign-in.dto';
-import { MemberDelegate } from 'src/application/delegates/member.delegate';
+import { MemberDelegate } from '../../application/delegates/member.delegate';
 
 @ApiTags('member')
 @Controller('member')
@@ -26,8 +26,8 @@ export class MemberController {
 
 
  
-     @ApiOperation ({summary: "Update  member"})
-     @Put('update/:id')
+    @ApiOperation ({summary: "Update  member"})
+    @Put('update/:id')
     updateMember(@Param('id') id : string,@Body() newMember: RegisterMemberDto ):Observable<MemberDomainEntity>{  
         this.useCase.toUpdateMember();
         return this.useCase.execute(id,newMember);
@@ -35,11 +35,11 @@ export class MemberController {
 
     
     @ApiOperation ({summary: "Get  Member"})
-     @Get('get/:id')
+    @Get('get/:id')
     getMember(@Param('id') id: string ):Observable<MemberDomainEntity>{
         this.useCase.toFindMembers();
         return this.useCase.execute(id);
-     }
+    }
 
 
      

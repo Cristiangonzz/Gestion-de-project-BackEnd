@@ -1,5 +1,5 @@
 {
-  "name": "gestion-seguimiento-tareas-proyectos",
+  "name": "gestion-seguimiento-tareas-projectos",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -67,6 +67,14 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/",
+      ".module.ts",
+      "main.ts",
+      ".config.ts",
+      "/src/infrastructura/dataBase/config "
+    ]
   }
 }

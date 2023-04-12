@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { IUseCase } from 'src/domain/interfaces/use-case.interface.domain';
-import { CollaborationDomainEntity } from 'src/domain/entities/collaboration.entity.domain';
-import { ICollaborationDomainService } from 'src/domain/services/collaboration.service.domain';
+import { IUseCase } from '../../domain/interfaces/use-case.interface.domain';
+import { CollaborationDomainEntity } from '../../domain/entities/collaboration.entity.domain';
+import { ICollaborationDomainService } from '../../domain/services/collaboration.service.domain';
 import { DeleteCollaborationUseCase } from '../use-case/delete/delete-collaboration.use-case';
 import { GetCollaborationUseCase } from '../use-case/get/get-collaboration-.use-case';
 import { UpdateCollaborationUseCase } from '../use-case/update/update-collaboration-.use-case';

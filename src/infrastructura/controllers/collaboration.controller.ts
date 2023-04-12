@@ -1,15 +1,15 @@
 import { Body, Controller, Get, Param, Post, Put ,Delete} from '@nestjs/common';
-import { Observable, catchError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CollaborationService } from '../services/collaboration.service';
 import { CreateCollaborationDto } from '../dto/create/create-collaboration.dto';
 import { CollaborationDomainEntity } from '../../domain/entities/collaboration.entity.domain';
-import { CollaborationDelegate } from 'src/application/delegates/collaboration.delegate';
+import { CollaborationDelegate } from '../../application/delegates/collaboration.delegate';
 
-@ApiTags('Collaboration')
-@Controller('Collaboration')
+@ApiTags('collaboration')
+@Controller('collaboration')
 export class CollaborationController {
-
+ 
     private readonly useCase: CollaborationDelegate; 
     constructor(
         private readonly collaborationService: CollaborationService ) {

@@ -24,7 +24,7 @@ export class AgregateTaskOfTeamUseCase {
                 name: "",
                 member: [""],
                 task: [""],
-                proyect: "",
+                project: "",
                 collaboration: [""],
             }
 
@@ -40,7 +40,7 @@ export class AgregateTaskOfTeamUseCase {
                     });
                   teamOld.member = value.member;
                   teamOld.name = value.name;
-                  teamOld.proyect = value.proyect;
+                  teamOld.project = value.project;
                   teamOld.task = value.task;
                   teamOld.collaboration = value.collaboration;
                   teamOld.task.push(data.task);

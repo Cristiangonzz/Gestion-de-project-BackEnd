@@ -2,8 +2,8 @@ import { Observable } from 'rxjs';
 import * as UseCase from '../../use-case';
 
 import { MemberDelegate } from '../member.delegate';
-import { IMemberDomainService } from 'src/domain/services/member.service.domain';
-import { MemberDomainEntity } from 'src/domain/entities/member.entity.domain';
+import { MemberDomainEntity } from '../../../domain/entities/member.entity.domain';
+import { IMemberDomainService } from '../../../domain/services/member.service.domain';
 
 jest.mock('../../use-case/get/get-member.use-case');
 jest.mock('../../use-case/create/register-member.use-case');

@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import * as UseCase from '../../use-case';
-import { IProyectDomainService } from '../../../domain/services/proyect.service.domain';
+import { IProjectDomainService } from '../../../domain/services/project.service.domain';
 import { TaskDelegate } from '../task.delegate';
 import { TaskDomainEntity } from '../../../domain/entities/task.entity.domain';
 import { ITaskDomainService } from '../../../domain/services/task.service.domain';
@@ -40,7 +40,7 @@ describe('TaskDelegate', () => {
       update: jest.fn(),
       delete: jest.fn(),
       findAll: jest.fn(),
-    } as IProyectDomainService<TaskDomainEntity>;
+    } as IProjectDomainService<TaskDomainEntity>;
 
     // Act
     delegator = new TaskDelegate(Service);

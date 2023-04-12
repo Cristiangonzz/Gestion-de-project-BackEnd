@@ -1,8 +1,8 @@
 import { IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
-import { ProyectSchema } from "../../../infrastructura/dataBase/schema/proyect.shema.infrastructura.data-base";
+import { ProjectSchema } from "../../dataBase/schema/project.shema.infrastructura.data-base";
 
-export class CreateProyectDto extends ProyectSchema{
+export class CreateProjectDto extends ProjectSchema{
     
     @ApiProperty()
     @IsString()

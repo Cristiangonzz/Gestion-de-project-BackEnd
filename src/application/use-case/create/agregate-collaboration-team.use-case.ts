@@ -24,7 +24,7 @@ export class AgregateCollaborationOfTeamUseCase {
                 name: "",
                 task: [""],
                 member: [""],
-                proyect: "",
+                project: "",
                 collaboration: [""]
             }
 
@@ -40,7 +40,7 @@ export class AgregateCollaborationOfTeamUseCase {
                     });
                   teamOld.collaboration = value.collaboration;
                   teamOld.name = value.name;
-                  teamOld.proyect = value.proyect;
+                  teamOld.project = value.project;
                   teamOld.task = value.task;
                   teamOld.collaboration.push(data.collaboration);
                   return teamOld;
@@ -48,7 +48,7 @@ export class AgregateCollaborationOfTeamUseCase {
                 switchMap((team: TeamDomainEntity) => {
                   return this.teamService.update(data.team, team);
                 })
-              );
+            );
     }
 }
 

@@ -5,16 +5,16 @@ import { ConfigService } from '@nestjs/config';
 import { TeamSchema, teamSchemaFactory } from './schema/team.shema.infrastructura.data-base';
 import { TaskSchema, taskSchemaFactory } from './schema/task.shema.infrastructura.data-base';
 import { MemberSchema, memberSchemaFactory } from './schema/member.shema.infrastructura.data-base';
-import { ProyectSchema, proyectSchemaFactory } from './schema/proyect.shema.infrastructura.data-base';
+import { ProjectSchema, ProjectSchemaFactory } from './schema/project.shema.infrastructura.data-base';
 import { CollaborationSchema, collaborationSchemaFactory } from './schema/collaboration.shema.infrastructura.data-base';
 import { CollaborationRepository } from './repositories/collaboration.intrastructura.repositoy.data-base';
 import { MemberRepository } from './repositories/member.intrastructura.repositoy.data-base';
-import { ProyectRepository } from './repositories/proyect.intrastructura.repositoy.data-base';
+import { ProjectRepository } from './repositories/project.intrastructura.repositoy.data-base';
 import { TaskRepository } from './repositories/task.intrastructura.repositoy.data-base';
 import { TeamRepository } from './repositories/team.intrastructura.repositoy.data-base';
 import { CollaborationMongoService } from './services/collaboration.service.mongo';
 import { MemberMongoService } from './services/member.service.mongo';
-import { ProyectMongoService } from './services/proyect.service.mongo';
+import { ProjectMongoService } from './services/project.service.mongo';
 import { TaskMongoService } from './services/task.service.mongo';
 import { TeamMongoService } from './services/team.service.mongo';
 
@@ -28,11 +28,12 @@ import { TeamMongoService } from './services/team.service.mongo';
       {name:TeamSchema.name , schema: teamSchemaFactory },
       {name:TaskSchema.name , schema: taskSchemaFactory }, 
       {name:MemberSchema.name , schema: memberSchemaFactory }, 
-      {name:ProyectSchema.name , schema: proyectSchemaFactory }, 
+      {name:ProjectSchema.name , schema: ProjectSchemaFactory }, 
       {name:CollaborationSchema.name , schema: collaborationSchemaFactory }, 
     ])
   ],
   controllers: [],
+  
   providers: [
     MongooseConfigService,
     ConfigService,
@@ -40,31 +41,30 @@ import { TeamMongoService } from './services/team.service.mongo';
     TeamMongoService,
     TaskMongoService,
     CollaborationMongoService,
-    ProyectMongoService,
+    ProjectMongoService,
     MemberMongoService,
 
     CollaborationRepository,
-    ProyectRepository,
+    ProjectRepository,
     MemberRepository,
     TaskRepository,
     TeamRepository,
   ],
   exports: [
     ConfigService,
-
-
     MongooseModule,
     MongooseConfigService,
+
 
     TeamMongoService,
     TaskMongoService,
     CollaborationMongoService,
-    ProyectMongoService,
+    ProjectMongoService,
     MemberMongoService,
     
     TeamRepository,
     CollaborationRepository,
-    ProyectRepository,
+    ProjectRepository,
     MemberRepository,
     TaskRepository,
 

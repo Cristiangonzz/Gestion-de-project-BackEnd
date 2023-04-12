@@ -4,17 +4,17 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { join } from 'path';
 import { CollaborationRepository } from './infrastructura/dataBase/repositories/collaboration.intrastructura.repositoy.data-base';
 import { MemberRepository } from './infrastructura/dataBase/repositories/member.intrastructura.repositoy.data-base';
-import { ProyectRepository } from './infrastructura/dataBase/repositories/proyect.intrastructura.repositoy.data-base';
+import { ProjectRepository } from './infrastructura/dataBase/repositories/project.intrastructura.repositoy.data-base';
 import { TaskRepository } from './infrastructura/dataBase/repositories/task.intrastructura.repositoy.data-base';
 import { TeamRepository } from './infrastructura/dataBase/repositories/team.intrastructura.repositoy.data-base';
 import { CollaborationService } from './infrastructura/services/collaboration.service';
 import { MemberService } from './infrastructura/services/member.service';
-import { ProyectService } from './infrastructura/services/proyect.service';
+import { ProjectService } from './infrastructura/services/project.service';
 import { TaskService } from './infrastructura/services/task.service';
 import { TeamService } from './infrastructura/services/team.service';
 import { CollaborationController } from './infrastructura/controllers/collaboration.controller';
 import { MemberController } from './infrastructura/controllers/member.controller';
-import { ProyectController } from './infrastructura/controllers/proyect.controller';
+import { ProjectController } from './infrastructura/controllers/project.controller';
 import { TaskController } from './infrastructura/controllers/task.controller';
 import { TeamController } from './infrastructura/controllers/team.controller';
 
@@ -33,7 +33,7 @@ import { TeamController } from './infrastructura/controllers/team.controller';
   controllers: [
     MemberController,
     TaskController,
-    ProyectController,
+    ProjectController,
     TeamController,
     CollaborationController,
     ],
@@ -44,11 +44,11 @@ import { TeamController } from './infrastructura/controllers/team.controller';
     TeamService,
     TaskService,
     CollaborationService,
-    ProyectService,
+    ProjectService,
     MemberService,
 
     CollaborationRepository,
-    ProyectRepository,
+    ProjectRepository,
     MemberRepository,
     TaskRepository,
     TeamRepository,

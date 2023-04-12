@@ -6,11 +6,18 @@ import { AppModule } from './app.module';
  * It creates a microservice that connects to a RabbitMQ queue.
  */
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
 
+  const app = await NestFactory.create(AppModule);
+  
+  app.enableCors({
+    origin: 'http://localhost:4200',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true
+  });
+  
   const config = new DocumentBuilder()
     .setTitle('Gestion API')
-    .setDescription('Gestion de siguimiento de tareas y proyectos')
+    .setDescription('Gestion de siguimiento de tareas y projectos')
     .setVersion('1.0')
     .addTag('Gestion')
     .build();

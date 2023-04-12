@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { ProyectDomainEntity } from '../../../domain/entities/proyect.entity.domain';
+import { ProjectDomainEntity } from '../../../domain/entities/project.entity.domain';
 
 
-@Schema({collection: 'Proyect',versionKey: false})
+@Schema({collection: 'project',versionKey: false})
 /* A class that represents a person. */
-export class ProyectSchema extends ProyectDomainEntity {
+export class ProjectSchema extends ProjectDomainEntity {
   @Prop({
       type: String,
       index: true,
@@ -38,7 +38,7 @@ export class ProyectSchema extends ProyectDomainEntity {
  * define la forma en que los documentos deben ser organizados dentro de una colección.
  * hidrata el esquema ya definido de nodejs y mongoose para que sea como un documento de mongoDB
  */
-export type proyectDocument = HydratedDocument<ProyectSchema>;
+export type ProjectDocument = HydratedDocument<ProjectSchema>;
 
-/* Creating a schema factory for the proyectSchema class. */
-export const proyectSchemaFactory = SchemaFactory.createForClass(ProyectSchema);
+/* Creating a schema factory for the projectSchema class. */
+export const ProjectSchemaFactory = SchemaFactory.createForClass(ProjectSchema);

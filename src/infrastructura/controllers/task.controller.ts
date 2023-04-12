@@ -4,7 +4,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { TaskDomainEntity } from '../../domain/entities/task.entity.domain';
 import { CreateTaskDto } from '../dto/create/create-task.dto';
 import { TaskService } from '../services/task.service';
-import { TaskDelegate } from 'src/application/delegates/task.delegate';
+import { TaskDelegate } from '../../application/delegates/task.delegate';
 
 @ApiTags('task')
 @Controller('task')

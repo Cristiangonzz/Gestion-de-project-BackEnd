@@ -15,7 +15,7 @@ export class UpdateTeamUseCase {
             const newTeam = new TeamDomainEntity();
             newTeam.name = data.name;
             newTeam.member = data.member;
-            newTeam.proyect = data.proyect;
+            newTeam.project = data.project;
             newTeam.task = data.task;
             newTeam.collaboration = data.collaboration;
             

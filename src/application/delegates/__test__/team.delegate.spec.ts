@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import * as UseCase from '../../use-case';
-import { IProyectDomainService } from '../../../domain/services/proyect.service.domain';
+import { IProjectDomainService } from '../../../domain/services/project.service.domain';
 import { TaskDomainEntity } from '../../../domain/entities/task.entity.domain';
 import { ITaskDomainService } from '../../../domain/services/task.service.domain';
 import { TeamDelegate } from '../team.delegate';
@@ -34,7 +34,7 @@ describe('TeamDelegate', () => {
       name: "cris",
       member: ["cris", "jose"],
       task: ["hacer las pruebas unitarias", "hacer las pruebas de integracion"],
-      proyect: "FullStack",
+      project: "FullStack",
       collaboration: ["hagan bien las coasas"],
     } as TeamDomainEntity;
 
@@ -43,7 +43,7 @@ describe('TeamDelegate', () => {
       name: "cris",
       member: ["cris", "jose"],
       task: ["hacer las pruebas unitarias", "hacer las pruebas de integracion"],
-      proyect: "FullStack",
+      project: "FullStack",
       collaboration: ["hagan bien las coasas"],
     } as TeamDomainEntity;
     
@@ -103,7 +103,7 @@ describe('TeamDelegate', () => {
       name: "cris",
       member: ["cris", "jose"],
       task: ["hacer las pruebas unitarias", "hacer las pruebas de integracion"],
-      proyect: "FullStack",
+      project: "FullStack",
       collaboration: ["hagan bien las coasas"],
      };
     const expectedData = { 
@@ -111,7 +111,7 @@ describe('TeamDelegate', () => {
       name: "cris",
       member: ["cris", "jose"],
       task: ["hacer las pruebas unitarias", "hacer las pruebas de integracion"],
-      proyect: "FullStack",
+      project: "FullStack",
       collaboration: ["hagan bien las coasas"],
     };
     const expectedInstanceType = Observable<TeamDomainEntity>;
@@ -151,7 +151,7 @@ describe('TeamDelegate', () => {
        name: "cris",
        member: ["cris", "jose"],
        task: ["hacer las pruebas unitarias", "hacer las pruebas de integracion"],
-       proyect: "FullStack",
+       project: "FullStack",
        collaboration: ["hagan bien las coasas"],
     };
     const expectedInstanceType = Observable<TeamDomainEntity>;
@@ -227,7 +227,7 @@ describe('TeamDelegate', () => {
        name: "cris",
        member: ["cris", "jose"],
        task: ["hacer las pruebas unitarias", "hacer las pruebas de integracion"],
-       proyect: "FullStack",
+       project: "FullStack",
        collaboration: ["hagan bien las coasas"],
     };
     const expectedInstanceType = Observable<TeamDomainEntity>;
@@ -268,7 +268,7 @@ describe('TeamDelegate', () => {
        name: "cris",
        member: ["cris", "jose"],
        task: ["hacer las pruebas unitarias", "hacer las pruebas de integracion"],
-       proyect: "FullStack",
+       project: "FullStack",
        collaboration: ["hagan bien las coasas"],
     };
     const expectedInstanceType = Observable<TeamDomainEntity>;
@@ -308,7 +308,7 @@ describe('TeamDelegate', () => {
        name: "cris",
        member: ["cris", "jose"],
        task: ["hacer las pruebas unitarias", "hacer las pruebas de integracion"],
-       proyect: "FullStack",
+       project: "FullStack",
        collaboration: ["hagan bien las coasas"],
     };
     const expectedInstanceType = Observable<TeamDomainEntity>;

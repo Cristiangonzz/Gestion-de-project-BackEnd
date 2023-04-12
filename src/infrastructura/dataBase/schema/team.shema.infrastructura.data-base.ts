@@ -34,8 +34,9 @@ export class TeamSchema extends TeamDomainEntity {
     @Prop({
         type: String,
         index: true,
+        required: true,
     })
-    proyect: string;
+    project: string;
 
     
 }

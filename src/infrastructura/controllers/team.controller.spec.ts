@@ -1,102 +1,134 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { of ,lastValueFrom} from "rxjs";
 
+import { TaskService } from "../services/task.service";
+import { AgregateCollaborationOfTeamUseCase, AgregateMemberOfTeamUseCase, AgregateTaskOfTeamUseCase, CreateTaskUseCase, CreateTeamUseCase, DeleteTaskUseCase, DeleteTeamUseCase, GetTaskUseCase, GetTeamUseCase, UpdateTaskUseCase, UpdateTeamUseCase } from "../../application/use-case";
+import { TeamController } from "./team.controller";
+import { TeamService } from "../services/team.service";
+import { CollaborationService } from "../services/collaboration.service";
+import { MemberService } from "../services/member.service";
+import { TeamDomainEntity } from "../../domain/entities/team.entity.domain";
+import { AgregateMemberOfTeamDto } from "../dto/create/agregate-member-of-team.dto";
+import { AgregateTaskOfTeamDto } from "../dto/create/agregate-task-of-team.dto";
+import { AgregateCollaborationOfTeamDto } from "../dto/create/agregate-collaboration-of-team.dto";
 
-describe('CollaborationController', () => {
 
-  let api: CollaborationController;
-  let service: TaskService;
+describe('TeamController', () => {
+
+  let api: TeamController;
+  let serviceTeam: TeamService;
+  let serviceTask: TaskService;
+  let serviceCollaboration: CollaborationService;
+  let serviceMember: MemberService;
   const _id = '642b210464e2757b0151ec9b';
 
-  const Task: TaskDomainEntity = 
+  const Team: TeamDomainEntity = 
     {
-        name: "tarea 1",
-        description: "hacer las pruebas unitarias",
-        dataExpiration: "20/10/2024",
-        progress: "avanzado",
-        priority: "alta"
+      name: "string",
+      member: [""],
+      task: [""],
+      project: "string",
+      collaboration: [""],
     }
 
-    const mockaTask : TaskDomainEntity = 
+    const mockaTeam : TeamDomainEntity = 
     {
-        name: "tarea 1",
-        description: "hacer las pruebas unitarias",
-        dataExpiration: "20/10/2024",
-        progress: "avanzado",
-        priority: "alta"
+      name: "string",
+      member: [""],
+      task: [""],
+      project: "string",
+      collaboration: [""],
     };
 
-  const expectedTask : TaskDomainEntity = 
+  const expectedTeam : TeamDomainEntity = 
     {
 
-        name: "tarea 1",
-        description: "hacer las pruebas unitarias",
-        dataExpiration: "20/10/2024",
-        progress: "avanzado",
-        priority: "alta"
+      name: "string",
+      member: [""],
+      task: [""],
+      project: "string",
+      collaboration: [""],
     };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         {
+          provide: TeamService,
+          useValue: {},
+        },
+        {
           provide: TaskService,
           useValue: {},
         },
+        {
+          provide: CollaborationService,
+          useValue: {},
+        },
+        {
+          provide: MemberService,
+          useValue: {},
+        },
       ],
-      controllers: [CollaborationController],
+      controllers: [TeamController],
     }).compile();
 
-    api = module.get<CollaborationController>(CollaborationController);
-    service = module.get<TaskService>(TaskService);
+    api = module.get<TeamController>(TeamController);
+    serviceTeam = module.get<TeamService>(TeamService);
+    serviceCollaboration = module.get<CollaborationService>(CollaborationService);
+    serviceTask = module.get<TaskService>(TaskService);
+    serviceMember = module.get<MemberService>(MemberService);
   });
 
 
   it('should be defined', () => {
     expect(api).toBeDefined();
-    expect(service).toBeDefined();
+    expect(serviceTeam).toBeDefined();
+    expect(serviceCollaboration).toBeDefined();
+    expect(serviceTask).toBeDefined();
+    expect(serviceMember).toBeDefined();
   });
 
   describe('Get', () => {
-    it('must return a Task', async () => {
+    it('must return a Team', async () => {
       // Arrange
      jest
-      .spyOn(GetTaskUseCase.prototype, 'execute')
-      .mockReturnValue(of(Task));
+      .spyOn(GetTeamUseCase.prototype, 'execute')
+      .mockReturnValue(of(Team));
 
     // Act
-    const result = api.getTask(_id);
+    const result = api.GetTeam(_id);
 
     // Assert
-    expect(await lastValueFrom(result)).toEqual((expectedTask));
+    expect(await lastValueFrom(result)).toEqual((expectedTeam));
     })
   });
 
   describe('create', () => {
-    it('must return a Task', async () => {
+    it('must return a Team', async () => {
       // Arrange
     jest
-      .spyOn(CreateTaskUseCase.prototype, 'execute')
-      .mockReturnValue(of(mockaTask));     
+      .spyOn(CreateTeamUseCase.prototype, 'execute')
+      .mockReturnValue(of(mockaTeam));     
 
     // Act
-    const result = api.createTask(Task);      // Assert
-    expect(await lastValueFrom(result) ).toEqual((expectedTask));
+    const result = api.crearTeam(Team);      // Assert
+    expect(await lastValueFrom(result) ).toEqual((expectedTeam));
       })
       });
 
    describe('update', () => {
-    it('must return a member ', async () => {
+    it('must return a Team ', async () => {
       // Arrange
       
       jest
-      .spyOn(UpdateTaskUseCase.prototype, 'execute')
-      .mockReturnValue(of(mockaTask))
+      .spyOn(UpdateTeamUseCase.prototype, 'execute')
+      .mockReturnValue(of(mockaTeam))
   
       // Ac
-      const result = api.updateTask(_id,Task)
+      const result = api.updateTeam(_id,Team)
       // Assert
-      expect(await lastValueFrom(result) ).toEqual((expectedTask));
+      expect(await lastValueFrom(result) ).toEqual((expectedTeam));
 
       })
    
@@ -104,20 +136,81 @@ describe('CollaborationController', () => {
     describe('delete', () => {
       it('must return a true', async () => {
         // Arrange
-      const Task = true;  
+      const Team = true;  
      
       const expected = true;  
   
       jest
-      .spyOn(DeleteTaskUseCase.prototype, 'execute')
-      .mockReturnValue(of(Task));  
+      .spyOn(DeleteTeamUseCase.prototype, 'execute')
+      .mockReturnValue(of(Team));  
    
     // Act  
-    const result = api.deleteTask(_id);
+    const result = api.deleteTeam(_id);
       // Assert
       expect(await lastValueFrom(result) ).toEqual((expected));
         })
-        })
+      })
         
   });
+
+
+  describe('aggregate member', () => {
+    it('must return a Team', async () => {
+      // Arrange
+      const aggregateTeam : AgregateMemberOfTeamDto = {
+        team: "64444014006d5a398ac395db",
+        member: "64344014006d5a398ac395db",
+      }
+    jest
+      .spyOn(AgregateMemberOfTeamUseCase.prototype, 'execute')
+      .mockReturnValue(of(mockaTeam));     
+
+    // Act
+    const result = api.agregateMemberOfTeam(aggregateTeam);     
+    
+    // Assert
+    expect(await lastValueFrom(result) ).toEqual((expectedTeam));
+      })
+      });
+
+  describe('aggregate task', () => {
+    it('must return a Team', async () => {
+      // Arrange
+      const aggregateTeam : AgregateTaskOfTeamDto = {
+        team: "64444014006d5a398ac395db",
+        task: "64344014006d5a398ac395db",
+      }
+    jest
+      .spyOn(AgregateTaskOfTeamUseCase.prototype, 'execute')
+      .mockReturnValue(of(mockaTeam));     
+
+    // Act
+    const result = api.agregateTaskOfTeam(aggregateTeam);     
+    
+    // Assert
+    expect(await lastValueFrom(result) ).toEqual((expectedTeam));
+      })
+      });
+
+  describe('aggregate collaboration', () => {
+    it('must return a Team', async () => {
+      // Arrange
+      const aggregateTeam : AgregateCollaborationOfTeamDto = {
+        team: "64444014006d5a398ac395db",
+        collaboration: "64344014006d5a398ac395db",
+      }
+    jest
+      .spyOn(AgregateCollaborationOfTeamUseCase.prototype, 'execute')
+      .mockReturnValue(of(mockaTeam));     
+
+    // Act
+    const result = api.agregateCollaborationOfTeam(aggregateTeam);     
+    
+    // Assert
+    expect(await lastValueFrom(result) ).toEqual((expectedTeam));
+      })
+      });
+          
+
+  
 });

@@ -1,25 +1,25 @@
 import { Observable } from 'rxjs';
 import * as UseCase from '../../use-case';
 import { ProjectDelegate } from '../project.delegate';
-import { ProyectDomainEntity } from '../../../domain/entities/proyect.entity.domain';
-import { IProyectDomainService } from '../../../domain/services/proyect.service.domain';
+import { ProjectDomainEntity } from '../../../domain/entities/project.entity.domain';
+import { IProjectDomainService } from '../../../domain/services/project.service.domain';
 
 
-jest.mock('../../use-case/get/get-proyect-.use-case');
-jest.mock('../../use-case/create/create-proyect-.use-case');
-jest.mock('../../use-case/update/update-proyect-.use-case');
-jest.mock('../../use-case/delete/delete-proyect-.use-case');
+jest.mock('../../use-case/get/get-project-.use-case');
+jest.mock('../../use-case/create/create-project-.use-case');
+jest.mock('../../use-case/update/update-project-.use-case');
+jest.mock('../../use-case/delete/delete-project-.use-case');
 
 describe('ProjectDelegate', () => {
   let delegator: ProjectDelegate;
-  let Service: IProyectDomainService<ProyectDomainEntity>;
+  let Service: IProjectDomainService<ProjectDomainEntity>;
   const mockData = 
     {
       name: "cris",
       dataExpiration: "20/10/1024",
       progress: "bastante",
       priority: "alta",
-    } as ProyectDomainEntity;
+    } as ProjectDomainEntity;
 
   const expectedData = 
     {
@@ -27,7 +27,7 @@ describe('ProjectDelegate', () => {
       dataExpiration: "20/10/1024",
       progress: "bastante",
       priority: "alta",
-    } as ProyectDomainEntity;
+    } as ProjectDomainEntity;
     
   beforeEach(() => {
     // Arrange
@@ -37,7 +37,7 @@ describe('ProjectDelegate', () => {
       update: jest.fn(),
       delete: jest.fn(),
       findAll: jest.fn(),
-    } as IProyectDomainService<ProyectDomainEntity>;
+    } as IProjectDomainService<ProjectDomainEntity>;
 
     // Act
     delegator = new ProjectDelegate(Service);
@@ -51,21 +51,21 @@ describe('ProjectDelegate', () => {
   it('should call Service.find', (done) => {
     // Arrange
     
-    const expectedInstanceType = Observable<ProyectDomainEntity[]>;
+    const expectedInstanceType = Observable<ProjectDomainEntity[]>;
     const stubFind = jest.fn(
       () =>
-        new Observable<ProyectDomainEntity>((subscriber) => {
+        new Observable<ProjectDomainEntity>((subscriber) => {
           subscriber.next(mockData);
           subscriber.complete();
         }),
     );
-    jest.spyOn(UseCase, 'GetProyectUseCase').mockReturnValue({
+    jest.spyOn(UseCase, 'GetProjectUseCase').mockReturnValue({
       execute: stubFind,
     } as any);
 
     // Act
     delegator.toFindProjects();
-    const result = delegator.execute<Observable<ProyectDomainEntity>>();
+    const result = delegator.execute<Observable<ProjectDomainEntity>>();
 
     // Assert
     expect(stubFind).toHaveBeenCalled();
@@ -94,21 +94,21 @@ describe('ProjectDelegate', () => {
       progress: "bastante",
       priority: "alta",
     };
-    const expectedInstanceType = Observable<ProyectDomainEntity>;
+    const expectedInstanceType = Observable<ProjectDomainEntity>;
     const stubCreate = jest.fn(
-      (proyect) =>
-        new Observable<ProyectDomainEntity>((subscriber) => {
-          subscriber.next({ _id, ...proyect } as ProyectDomainEntity);
+      (project) =>
+        new Observable<ProjectDomainEntity>((subscriber) => {
+          subscriber.next({ _id, ...project } as ProjectDomainEntity);
           subscriber.complete();
         }),
     );
-    jest.spyOn(UseCase, 'CreateProyectUseCase').mockReturnValue({
+    jest.spyOn(UseCase, 'CreateProjectUseCase').mockReturnValue({
       execute: stubCreate,
     } as any);
 
     // Act
     delegator.toCreateProject();
-    const result = delegator.execute<Observable<ProyectDomainEntity>>(payload);
+    const result = delegator.execute<Observable<ProjectDomainEntity>>(payload);
 
     // Assert
     expect(stubCreate).toHaveBeenCalledWith(payload);
@@ -133,21 +133,21 @@ describe('ProjectDelegate', () => {
       progress: "bastante",
       priority: "alta",
     };
-    const expectedInstanceType = Observable<ProyectDomainEntity>;
+    const expectedInstanceType = Observable<ProjectDomainEntity>;
     const stubUpdate = jest.fn(
       (id, data) =>
-        new Observable<ProyectDomainEntity>((subscriber) => {
-          subscriber.next({ _id: id, ...data } as ProyectDomainEntity);
+        new Observable<ProjectDomainEntity>((subscriber) => {
+          subscriber.next({ _id: id, ...data } as ProjectDomainEntity);
           subscriber.complete();
         }),
     );
-    jest.spyOn(UseCase, 'UpdateProyectUseCase').mockReturnValue({
+    jest.spyOn(UseCase, 'UpdateProjectUseCase').mockReturnValue({
       execute: stubUpdate,
     } as any);
 
     // Act
     delegator.toUpdateProject();
-    const result = delegator.execute<Observable<ProyectDomainEntity>>(_id, mockData);
+    const result = delegator.execute<Observable<ProjectDomainEntity>>(_id, mockData);
 
     // Assert
     expect(stubUpdate).toHaveBeenCalledWith(_id, mockData);
@@ -173,7 +173,7 @@ describe('ProjectDelegate', () => {
           subscriber.complete();
         }),
     );
-    jest.spyOn(UseCase, 'DeleteProyectUseCase').mockReturnValue({
+    jest.spyOn(UseCase, 'DeleteProjectUseCase').mockReturnValue({
       execute: stubDelete,
     } as any);
 

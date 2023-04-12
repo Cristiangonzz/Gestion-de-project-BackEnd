@@ -10,5 +10,5 @@ export class RegisterTeamDto extends TeamSchema{
 
     @ApiProperty()
     @IsString()
-    proyect: string;
+    project: string;
 }

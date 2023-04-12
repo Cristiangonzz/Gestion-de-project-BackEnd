@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { IUseCase } from 'src/domain/interfaces/use-case.interface.domain';
-import { TaskDomainEntity } from 'src/domain/entities/task.entity.domain';
-import { ITaskDomainService } from 'src/domain/services/task.service.domain';
+import { IUseCase } from '../../domain/interfaces/use-case.interface.domain';
+import { TaskDomainEntity } from '../../domain/entities/task.entity.domain';
+import { ITaskDomainService } from '../../domain/services/task.service.domain';
 import { DeleteTaskUseCase } from '../use-case/delete/delete-task-.use-case';
 import { GetTaskUseCase } from '../use-case/get/get-task-.use-case';
 import { UpdateTaskUseCase } from '../use-case/update/update-task-.use-case';

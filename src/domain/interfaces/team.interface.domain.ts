@@ -2,6 +2,6 @@ export interface ITeamDomainModel{
     name: string;
     member: string[];
     task: string[];
-    proyect: string;
+    project: string;
     collaboration: string[];
 }
