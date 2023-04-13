@@ -10,6 +10,7 @@ import { TeamDomainEntity } from '../../../domain/entities/team.entity.domain';
 import { ICollaborationDomainService } from '../../../domain/services/collaboration.service.domain';
 import { IMemberDomainService } from '../../../domain/services/member.service.domain';
 import { ITeamDomainService } from '../../../domain/services/team.service.domain';
+import { ProjectDomainEntity } from 'src/domain/entities/project.entity.domain';
 
 
 jest.mock('../../use-case/get/get-team-.use-case');
@@ -28,6 +29,7 @@ describe('TeamDelegate', () => {
   let ServiceCollaboration: ICollaborationDomainService<CollaborationDomainEntity>;
   let ServiceTask:IMemberDomainService<MemberDomainEntity>;
   let ServiceMember: ITaskDomainService<TaskDomainEntity>;
+  let ServiceProject:IProjectDomainService<ProjectDomainEntity>;
 
   const mockData = 
     {
@@ -58,7 +60,7 @@ describe('TeamDelegate', () => {
     } as ITeamDomainService<TeamDomainEntity>;
 
     // Act
-    delegator = new TeamDelegate(ServiceTeam, ServiceCollaboration, ServiceTask, ServiceMember);
+    delegator = new TeamDelegate(ServiceTeam, ServiceCollaboration, ServiceTask, ServiceMember,ServiceProject);
   });
 
   it('should be defined', () => {

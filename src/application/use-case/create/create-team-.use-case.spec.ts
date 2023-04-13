@@ -74,6 +74,9 @@ describe('CreateTeamUseCase', () => {
     { 
         name: "string",
         project: "string",
+        member: [""],
+        task: [""],
+        collaboration: [""],
     };
     const stubFindOneBy = jest.fn(() =>
     new Observable<ProjectDomainEntity>((subscriber) => {
@@ -90,7 +93,6 @@ describe('CreateTeamUseCase', () => {
     const result = useCase.execute(registers);
 
     // Assert
-   // expect(service.register).toHaveBeenCalledWith(mockData);
     expect(result).toBeInstanceOf(expectedInstanceType);
     result.subscribe({
       next: (data) => {

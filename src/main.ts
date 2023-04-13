@@ -2,9 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
-/**
- * It creates a microservice that connects to a RabbitMQ queue.
- */
+
 async function bootstrap() {
 
   const app = await NestFactory.create(AppModule);

@@ -19,7 +19,7 @@ export class AgregateTaskOfTeamUseCase {
         ) { }
 
         execute(data: AgregateTaskOfTeamDto): Observable<TeamDomainEntity> {
-            console.log(data);
+            
             let teamOld:TeamDomainEntity = {
                 name: "",
                 member: [""],

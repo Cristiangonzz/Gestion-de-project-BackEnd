@@ -74,6 +74,7 @@
       ".module.ts",
       "main.ts",
       ".config.ts",
+      ".guard.ts",
       "/src/infrastructura/dataBase/config "
     ]
   }
