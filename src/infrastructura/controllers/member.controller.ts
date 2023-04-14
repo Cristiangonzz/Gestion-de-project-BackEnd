@@ -41,6 +41,13 @@ export class MemberController {
         return this.useCase.execute(id);
     }
 
+    @ApiOperation ({summary: "Get Email Member"})
+    @Get('get-email/:id')
+    getEmailMember(@Param('id') id: string ):Observable<MemberDomainEntity>{
+        this.useCase.toFindEmailMembers();
+        return this.useCase.execute(id);
+    }
+
 
      
     @ApiOperation ({summary: "Delete  member"})
