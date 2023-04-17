@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import { ProjectDomainEntity } from '../../../domain/entities/project.entity.domain';
+import { ApiProperty } from '@nestjs/swagger';
 
 
 @Schema({collection: 'Project',versionKey: false})
@@ -11,12 +12,14 @@ export class ProjectSchema extends ProjectDomainEntity {
       index: true,
       required: true,
   })
+  @ApiProperty()
   name: string;
 
   @Prop({
       type: String,
       index: true,
     })
+    @ApiProperty()
     dataExpiration: string;
     
     @Prop({
@@ -24,6 +27,7 @@ export class ProjectSchema extends ProjectDomainEntity {
         index: true,
        
     })
+    @ApiProperty()
     progress: string;
 
     @Prop({
@@ -31,6 +35,7 @@ export class ProjectSchema extends ProjectDomainEntity {
         index: true,
        
     })
+    @ApiProperty()
     priority: string;
 
 }

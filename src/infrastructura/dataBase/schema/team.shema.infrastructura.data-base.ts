@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import { TeamDomainEntity } from '../../../domain/entities/team.entity.domain';
+import { ApiProperty } from '@nestjs/swagger';
 
 
 @Schema({collection: 'Team',versionKey: false})
@@ -11,24 +12,28 @@ export class TeamSchema extends TeamDomainEntity {
       index: true,
       required: true,
   })
+  @ApiProperty()
   name: string;
 
   @Prop({
       type: [String],
       index: true,
     })
+    @ApiProperty()
     member: string[];
     
     @Prop({
         type: [String],
         index: true,
     })
+    @ApiProperty()
     task: string[];
 
     @Prop({
         type: [String],
         index: true,
     })
+    @ApiProperty()
     collaboration: string[];
     
     @Prop({
@@ -36,6 +41,7 @@ export class TeamSchema extends TeamDomainEntity {
         index: true,
         required: true,
     })
+    @ApiProperty()
     project: string;
 
     

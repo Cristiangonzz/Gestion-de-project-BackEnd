@@ -11,6 +11,7 @@ import { TeamDomainEntity } from "../../domain/entities/team.entity.domain";
 import { AgregateMemberOfTeamDto } from "../dto/create/agregate-member-of-team.dto";
 import { AgregateTaskOfTeamDto } from "../dto/create/agregate-task-of-team.dto";
 import { AgregateCollaborationOfTeamDto } from "../dto/create/agregate-collaboration-of-team.dto";
+import { ProjectService } from "../services/project.service";
 
 
 describe('TeamController', () => {
@@ -20,6 +21,7 @@ describe('TeamController', () => {
   let serviceTask: TaskService;
   let serviceCollaboration: CollaborationService;
   let serviceMember: MemberService;
+  let serviceProject: ProjectService;
   const _id = '642b210464e2757b0151ec9b';
 
   const Team: TeamDomainEntity = 
@@ -69,6 +71,10 @@ describe('TeamController', () => {
           provide: MemberService,
           useValue: {},
         },
+        {
+          provide: ProjectService,
+          useValue: {},
+        },
       ],
       controllers: [TeamController],
     }).compile();
@@ -78,6 +84,7 @@ describe('TeamController', () => {
     serviceCollaboration = module.get<CollaborationService>(CollaborationService);
     serviceTask = module.get<TaskService>(TaskService);
     serviceMember = module.get<MemberService>(MemberService);
+    serviceProject = module.get<ProjectService>(ProjectService);
   });
 
 
@@ -87,6 +94,7 @@ describe('TeamController', () => {
     expect(serviceCollaboration).toBeDefined();
     expect(serviceTask).toBeDefined();
     expect(serviceMember).toBeDefined();
+    expect(serviceProject).toBeDefined();
   });
 
   describe('Get', () => {

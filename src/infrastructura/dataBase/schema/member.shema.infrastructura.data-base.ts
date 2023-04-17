@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import { MemberDomainEntity } from '../../../domain/entities/member.entity.domain';
+import { ApiProperty } from '@nestjs/swagger';
 
 
 @Schema({collection: 'Member',versionKey: false})
@@ -11,6 +12,7 @@ export class MemberSchema extends MemberDomainEntity {
       index: true,
       required: true,
   })
+  @ApiProperty()
   name: string;
 
   @Prop({
@@ -18,6 +20,7 @@ export class MemberSchema extends MemberDomainEntity {
       index: true,
       required: true,
     })
+    @ApiProperty()
     document: string;
 
     @Prop({
@@ -25,12 +28,14 @@ export class MemberSchema extends MemberDomainEntity {
         index: true,
         required: true,
       })
+      @ApiProperty()
       salary: number;
     
     @Prop({
         type: String,
         index: true,
     })
+    @ApiProperty()
     role: string;
 
     @Prop({
@@ -39,6 +44,7 @@ export class MemberSchema extends MemberDomainEntity {
       required: true,
       unique:true,
     })
+    @ApiProperty()
     email: string;
   
   @Prop({
@@ -46,6 +52,7 @@ export class MemberSchema extends MemberDomainEntity {
       index: true,
       required:true,
   })
+  @ApiProperty()
   password: string;
 
   

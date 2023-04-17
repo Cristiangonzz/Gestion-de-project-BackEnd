@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import { TaskDomainEntity } from '../../../domain/entities/task.entity.domain';
+import { ApiProperty } from '@nestjs/swagger';
 
 
 @Schema({collection: 'Task',versionKey: false})
@@ -11,30 +12,35 @@ export class TaskSchema extends TaskDomainEntity {
       index: true,
       required: true,
   })
+  @ApiProperty()
   name: string;
 
   @Prop({
       type: String,
       index: true,
     })
+    @ApiProperty()
     dataExpiration: string;
 
     @Prop({
         type: String,
         index: true,
       })
+      @ApiProperty()
       description: string;
     
     @Prop({
         type: String,
         index: true,
     })
+    @ApiProperty()
     progress: string;
 
     @Prop({
         type: String,
         index: true,
     })
+    @ApiProperty()
     priority: string;
 
 }

@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import { CollaborationDomainEntity } from '../../../domain/entities/collaboration.entity.domain';
+import { ApiProperty } from '@nestjs/swagger';
 
 
 @Schema({collection: 'Collaboration',versionKey: false})
@@ -11,6 +12,7 @@ export class CollaborationSchema extends CollaborationDomainEntity {
       index: true,
       required: true,
   })
+  @ApiProperty()
   comment: string;
 
   @Prop({
@@ -18,18 +20,21 @@ export class CollaborationSchema extends CollaborationDomainEntity {
       index: true,
      
     })
+    @ApiProperty()
     notification: string;
     
     @Prop({
         type: String,
         index: true,
     })
+    @ApiProperty()
     progress: string;
 
     @Prop({
         type: String,
         index: true,
     })
+    @ApiProperty()
     performence: string;
 
 }
