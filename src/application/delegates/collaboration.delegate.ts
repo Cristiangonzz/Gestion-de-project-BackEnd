@@ -6,6 +6,7 @@ import { DeleteCollaborationUseCase } from '../use-case/delete/delete-collaborat
 import { GetCollaborationUseCase } from '../use-case/get/get-collaboration-.use-case';
 import { UpdateCollaborationUseCase } from '../use-case/update/update-collaboration-.use-case';
 import { CreateCollaborationUseCase } from '../use-case/create/create-collaboration-.use-case';
+import { FindAllCollaborationUseCase } from '../use-case/findAll/find-all-collaboration.use-case';
 
 export class CollaborationDelegate implements IUseCase {
   private delegate: IUseCase;
@@ -27,8 +28,12 @@ export class CollaborationDelegate implements IUseCase {
   toFindCollaborations(): void {
     this.delegate = new GetCollaborationUseCase(this.collaborationService);
   }
+  toFindAllCollaborations(): void {
+    this.delegate = new FindAllCollaborationUseCase(this.collaborationService);
+  }
 
   toUpdateCollaboration(): void {
     this.delegate = new UpdateCollaborationUseCase(this.collaborationService);
   }
+
 }

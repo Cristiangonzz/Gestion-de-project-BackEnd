@@ -44,5 +44,12 @@ export class TaskController {
             this.useCase.toDeleteTask();
             return this.useCase.execute(id);
         }
+     
+    @ApiOperation ({summary: "find All Task"})
+    @Get('findAll/')
+    findAllTask():Observable<TaskDomainEntity[]>{
+        this.useCase.toFindAllTasks();
+        return this.useCase.execute();
+    }
     }
                     

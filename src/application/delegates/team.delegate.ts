@@ -17,6 +17,7 @@ import { AgregateCollaborationOfTeamUseCase } from '../use-case/create/agregate-
 import { AgregateMemberOfTeamUseCase } from '../use-case/create/agregate-member-team.use-case';
 import { ProjectDomainEntity } from 'src/domain/entities/project.entity.domain';
 import { IProjectDomainService } from 'src/domain/services/project.service.domain';
+import { FindAllTeamUseCase } from '../use-case/findAll/find-all-team.use-case';
 
 export class TeamDelegate implements IUseCase {
   private delegate: IUseCase;
@@ -43,6 +44,9 @@ export class TeamDelegate implements IUseCase {
 
   toFindTeams(): void {
     this.delegate = new GetTeamUseCase(this.teamService);
+  }
+  toFindAllTeams(): void {
+    this.delegate = new FindAllTeamUseCase(this.teamService);
   }
 
   toUpdateTeam(): void {

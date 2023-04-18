@@ -42,10 +42,20 @@ export class CollaborationController {
       
     @ApiOperation ({summary: "Delete  Collaboration"})
     @Delete('delete/:id')
-        deleteCollaboration(@Param('id') id: string ):Observable<boolean>{
+    deleteCollaboration(@Param('id') id: string ):Observable<boolean>{
 
-            this.useCase.toDeleteCollaboration();
-            return this.useCase.execute(id);
-        }
+        this.useCase.toDeleteCollaboration();
+        return this.useCase.execute(id);
+    }
+
+    @ApiOperation ({summary: "find All Collaboration"})
+      @Get('findAll/')
+      findAllCollaboration():Observable<CollaborationDomainEntity[]>{
+        this.useCase.toFindAllCollaborations();
+        return this.useCase.execute();
+      }
+
+
+        
     }
     

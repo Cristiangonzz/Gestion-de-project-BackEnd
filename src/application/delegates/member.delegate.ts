@@ -8,6 +8,7 @@ import { GetMemberUseCase } from '../use-case/get/get-member.use-case';
 import { UpdateMemberUseCase } from '../use-case/update/update-member.use-case';
 import { SignInMemberUseCase } from '../sign-in/sign-in.use-case';
 import { GetEmailMemberUseCase } from '../use-case/get/get-email-member.use-case';
+import { FindAllMemberUseCase } from '../use-case/findAll/find-all-member.use-case';
 
 export class MemberDelegate implements IUseCase {
   private delegate: IUseCase;
@@ -31,6 +32,9 @@ export class MemberDelegate implements IUseCase {
   }
   toFindEmailMembers(): void {
     this.delegate = new GetEmailMemberUseCase(this.memberService);
+  }
+  toFindAllMembers(): void {
+    this.delegate = new FindAllMemberUseCase(this.memberService);
   }
 
   toUpdateMember(): void {

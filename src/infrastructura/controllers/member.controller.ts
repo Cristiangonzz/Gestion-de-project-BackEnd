@@ -63,5 +63,12 @@ export class MemberController {
         this.useCase.toSignInMember();
         return this.useCase.execute(member);
       }
+
+      @ApiOperation ({summary: "find All Member"})
+      @Get('findAll/')
+      findAllMember():Observable<MemberDomainEntity[]>{
+        this.useCase.toFindAllMembers();
+        return this.useCase.execute();
+      }
   }
     

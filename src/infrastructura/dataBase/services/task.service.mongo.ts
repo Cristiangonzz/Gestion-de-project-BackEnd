@@ -21,7 +21,7 @@ export class TaskMongoService
     return this.taskRepository.delete(id);
   }
   findAll(): Observable<TaskSchema[]> {
-    throw new Error('Method not implemented.');
+    return this.taskRepository.findAll();
   }
   findOneBy(id: string): Observable<TaskSchema> {
       return this.taskRepository.findOneBy(id);

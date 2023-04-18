@@ -6,6 +6,7 @@ import { DeleteTaskUseCase } from '../use-case/delete/delete-task-.use-case';
 import { GetTaskUseCase } from '../use-case/get/get-task-.use-case';
 import { UpdateTaskUseCase } from '../use-case/update/update-task-.use-case';
 import { CreateTaskUseCase } from '../use-case/create/create-task-.use-case';
+import { FindAllTaskUseCase } from '../use-case/findAll/find-all-task.use-case';
 
 export class TaskDelegate implements IUseCase {
   private delegate: IUseCase;
@@ -26,6 +27,9 @@ export class TaskDelegate implements IUseCase {
 
   toFindTasks(): void {
     this.delegate = new GetTaskUseCase(this.taskService);
+  }
+  toFindAllTasks(): void {
+    this.delegate = new FindAllTaskUseCase(this.taskService);
   }
 
   toUpdateTask(): void {

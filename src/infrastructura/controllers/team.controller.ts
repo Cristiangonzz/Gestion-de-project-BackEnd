@@ -80,6 +80,12 @@ export class TeamController {
         this.useCase.toAgregateCollaborationOfTeam();
         return this.useCase.execute(newTeam);
     }
+    @ApiOperation ({summary: "find All Team"})
+    @Get('findAll/')
+    findAllTeam():Observable<TeamDomainEntity[]>{
+        this.useCase.toFindAllTeams();
+        return this.useCase.execute();
+    }
 }
     
   

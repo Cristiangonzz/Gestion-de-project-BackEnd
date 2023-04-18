@@ -21,7 +21,7 @@ export class TeamMongoService
     return this.teamRepository.delete(id);
   }
   findAll(): Observable<TeamSchema[]> {
-    throw new Error('Method not implemented.');
+    return this.teamRepository.findAll();
   }
   findOneBy(id: string): Observable<TeamSchema> {
       return this.teamRepository.findOneBy(id);

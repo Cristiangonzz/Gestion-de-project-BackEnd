@@ -45,6 +45,12 @@ export class ProjectController {
             this.useCase.toDeleteProject();
             return this.useCase.execute(id);
         }
-        
+    
+    @ApiOperation ({summary: "find All Project"})
+    @Get('findAll/')
+    findAllProject():Observable<ProjectDomainEntity[]>{
+        this.useCase.toFindAllProjects();
+        return this.useCase.execute();
+    }
     }
   

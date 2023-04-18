@@ -3,6 +3,7 @@ import { ProjectDomainEntity } from '../../domain/entities/project.entity.domain
 import { IUseCase } from '../../domain/interfaces/use-case.interface.domain';
 import { IProjectDomainService } from '../../domain/services/project.service.domain';
 import { CreateProjectUseCase, DeleteProjectUseCase, GetProjectUseCase, UpdateProjectUseCase } from '../use-case';
+import { FindAllProjectUseCase } from '../use-case/findAll/find-all-project.use-case';
 
 export class ProjectDelegate implements IUseCase {
   private delegate: IUseCase;
@@ -23,6 +24,9 @@ export class ProjectDelegate implements IUseCase {
 
   toFindProjects(): void {
     this.delegate = new GetProjectUseCase(this.projectService);
+  }
+  toFindAllProjects(): void {
+    this.delegate = new FindAllProjectUseCase(this.projectService);
   }
 
   toUpdateProject(): void {

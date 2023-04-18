@@ -21,7 +21,7 @@ export class ProjectMongoService
     return this.projectRepository.delete(id);
   }
   findAll(): Observable<ProjectSchema[]> {
-    throw new Error('Method not implemented.');
+    return this.projectRepository.findAll();
   }
   findOneBy(id: string): Observable<ProjectSchema> {
       return this.projectRepository.findOneBy(id);

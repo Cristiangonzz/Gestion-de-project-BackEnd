@@ -21,7 +21,7 @@ export class CollaborationMongoService
     return this.collaborationRepository.delete(id);
   }
   findAll(): Observable<CollaborationSchema[]> {
-    throw new Error('Method not implemented.');
+    return this.collaborationRepository.findAll();
   }
   findOneBy(id: string): Observable<CollaborationSchema> {
       return this.collaborationRepository.findOneBy(id);
