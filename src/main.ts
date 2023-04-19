@@ -8,7 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
   app.enableCors({
-    origin: 'https://project-management-2a01a.web.app',
+    origin: 'http://localhost:4000',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true
   });
