@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post, Put ,Delete} from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { TaskDomainEntity } from '../../domain/entities/task.entity.domain';
+import { TaskDomainEntity, TaskDomainEntityMongo } from '../../domain/entities/task.entity.domain';
 import { CreateTaskDto } from '../dto/create/create-task.dto';
 import { TaskService } from '../services/task.service';
 import { TaskDelegate } from '../../application/delegates/task.delegate';
@@ -47,7 +47,7 @@ export class TaskController {
      
     @ApiOperation ({summary: "find All Task"})
     @Get('findAll/')
-    findAllTask():Observable<TaskDomainEntity[]>{
+    findAllTask():Observable<TaskDomainEntityMongo[]>{
         this.useCase.toFindAllTasks();
         return this.useCase.execute();
     }

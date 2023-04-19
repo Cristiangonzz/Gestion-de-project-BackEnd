@@ -7,3 +7,12 @@ export class TaskDomainEntity implements ITaskDomainModel {
     progress: string;
     priority: string;
 }
+
+export class TaskDomainEntityMongo implements ITaskDomainModel {
+    _id: string;
+    name: string;
+    description: string;
+    dataExpiration: string;
+    progress: string;
+    priority: string;
+}

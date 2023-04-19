@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post, Put ,Delete} from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { TeamService } from '../services/team.service';
-import { TeamDomainEntity } from '../../domain/entities/team.entity.domain';
+import { TeamDomainEntity, TeamDomainEntityMongo } from '../../domain/entities/team.entity.domain';
 import { RegisterTeamDto } from '../dto/create/register-team.dto';
 import { AgregateMemberOfTeamDto } from '../dto/create/agregate-member-of-team.dto';
 import { MemberService } from '../services/member.service';
@@ -82,7 +82,7 @@ export class TeamController {
     }
     @ApiOperation ({summary: "find All Team"})
     @Get('findAll/')
-    findAllTeam():Observable<TeamDomainEntity[]>{
+    findAllTeam():Observable<TeamDomainEntityMongo[]>{
         this.useCase.toFindAllTeams();
         return this.useCase.execute();
     }

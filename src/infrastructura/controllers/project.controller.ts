@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ProjectService } from '../services/project.service';
 import { CreateProjectDto } from '../dto/create/create-project.dto';
-import { ProjectDomainEntity } from '../../domain/entities/project.entity.domain';
+import { ProjectDomainEntity, ProjectDomainEntityMongo } from '../../domain/entities/project.entity.domain';
 import { ProjectDelegate } from '../../application/delegates/project.delegate';
 
 @ApiTags('project')
@@ -48,7 +48,7 @@ export class ProjectController {
     
     @ApiOperation ({summary: "find All Project"})
     @Get('findAll/')
-    findAllProject():Observable<ProjectDomainEntity[]>{
+    findAllProject():Observable<ProjectDomainEntityMongo[]>{
         this.useCase.toFindAllProjects();
         return this.useCase.execute();
     }

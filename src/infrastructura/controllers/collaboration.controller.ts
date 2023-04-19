@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CollaborationService } from '../services/collaboration.service';
 import { CreateCollaborationDto } from '../dto/create/create-collaboration.dto';
-import { CollaborationDomainEntity } from '../../domain/entities/collaboration.entity.domain';
+import { CollaborationDomainEntity, CollaborationDomainEntityMongo } from '../../domain/entities/collaboration.entity.domain';
 import { CollaborationDelegate } from '../../application/delegates/collaboration.delegate';
 
 @ApiTags('collaboration')
@@ -50,7 +50,7 @@ export class CollaborationController {
 
     @ApiOperation ({summary: "find All Collaboration"})
       @Get('findAll/')
-      findAllCollaboration():Observable<CollaborationDomainEntity[]>{
+      findAllCollaboration():Observable<CollaborationDomainEntityMongo[]>{
         this.useCase.toFindAllCollaborations();
         return this.useCase.execute();
       }

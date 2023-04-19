@@ -7,3 +7,12 @@ export class ProjectDomainEntity implements IProjectDomainModel{
     priority: string;
     
 }
+
+export class ProjectDomainEntityMongo implements IProjectDomainModel{
+    _id: string;
+    name: string;
+    dataExpiration: string;
+    progress: string;
+    priority: string;
+    
+}

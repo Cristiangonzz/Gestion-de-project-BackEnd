@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post, Put ,Delete} from '@nestjs/common';
 import { Observable} from 'rxjs';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { MemberService } from '../services/member.service';
-import { MemberDomainEntity } from '../../domain/entities/member.entity.domain';
+import { MemberDomainEntity, MemberDomainEntityMongo } from '../../domain/entities/member.entity.domain';
 import { RegisterMemberDto } from '../dto/create/register-member.dto';
 import { SignInDto } from '../dto/sign-in/sign-in.dto';
 import { MemberDelegate } from '../../application/delegates/member.delegate';
@@ -66,7 +66,7 @@ export class MemberController {
 
       @ApiOperation ({summary: "find All Member"})
       @Get('findAll/')
-      findAllMember():Observable<MemberDomainEntity[]>{
+      findAllMember():Observable<MemberDomainEntityMongo[]>{
         this.useCase.toFindAllMembers();
         return this.useCase.execute();
       }

@@ -8,3 +8,14 @@ export class TeamDomainEntity implements ITeamDomainModel {
     collaboration: string[];
   
 }
+
+
+export class TeamDomainEntityMongo implements ITeamDomainModel {
+    _id: string;
+    name: string;
+    member: string[];
+    task: string[];
+    project: string;
+    collaboration: string[];
+  
+}
